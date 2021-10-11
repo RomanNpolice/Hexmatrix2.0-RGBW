@@ -11,8 +11,9 @@
 #define DATA_PIN    2
 #define LED_TYPE    SK6812
 #define COLOR_ORDER RGB
-#define NUM_LEDS    96
+#define NUM_LEDS    96  
 #define BRIGHTNESS  255
+#define MAXULONG 4294967295
 
 CRGBW ledsRGB[NUM_LEDS];
 CRGB *leds = (CRGB *) &ledsRGB[0];
@@ -56,29 +57,33 @@ void loop()
 {
   time_t now = time(nullptr);
   struct tm* p_tm = localtime(&now);
-  Serial.print("-------------------------------------------------\n");
-  Serial.print("Date & Time : ");
-  Serial.print(p_tm->tm_mday);
-  Serial.print("/");
-  Serial.print(p_tm->tm_mon + 1);
-  Serial.print("/");
-  Serial.print(p_tm->tm_year + 1900);
-  Serial.print(" ");
+//  Serial.print("-------------------------------------------------\n");
+//  Serial.print("Date & Time : ");
+//  Serial.print(p_tm->tm_mday);
+//  Serial.print("/");
+//  Serial.print(p_tm->tm_mon + 1);
+//  Serial.print("/");
+//  Serial.print(p_tm->tm_year + 1900);
+//  Serial.print(" ");
   int hour = p_tm->tm_hour;
   int minute = p_tm->tm_min;
   if (hour > 12)
   {
     hour = hour - 12;
   }
-  Serial.print(hour);
-  Serial.print(":");
-  Serial.print(minute);
-  Serial.print(":");
-  Serial.println(p_tm->tm_sec);
+//  Serial.print(hour);
+//  Serial.print(":");
+//  Serial.print(minute);
+//  Serial.print(":");
+//  Serial.println(p_tm->tm_sec);
   pride();
   if (hour == 0 || hour == 12)
   {
     hour12();
+    if (millis() > MAXULONG - 3300000)
+    {
+      ESP.restart();
+    }
   }
   if (hour == 1)
   {
