@@ -127,7 +127,7 @@ void loop()
   if (hour == 10)
   {
     hour10();
-    if(p_tm->tm_hour == 12+hour)
+    if(p_tm->tm_hour == 11+hour)
     {
       FastLED.setBrightness(BRIGHTNESS - DIMMINGBRIGHTNESS);
     }
@@ -135,7 +135,7 @@ void loop()
   if (hour == 11)
   {
     hour11();
-    if(p_tm->tm_hour == 12+hour)
+    if(p_tm->tm_hour == 11+hour)
     {
       FastLED.setBrightness(BRIGHTNESS_NIGHT);
     }
