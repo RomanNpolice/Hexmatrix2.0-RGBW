@@ -13,6 +13,8 @@
 #define COLOR_ORDER RGB
 #define NUM_LEDS    96  
 #define BRIGHTNESS  255
+#define DIMMINGBRIGHTNESS 80
+#define BRIGHTNESS_NIGHT  30
 #define MAXULONG 4294967295
 
 CRGBW ledsRGB[NUM_LEDS];
@@ -112,6 +114,7 @@ void loop()
   if (hour == 7)
   {
     hour7();
+    FastLED.setBrightness(BRIGHTNESS);
   }
   if (hour == 8)
   {
@@ -124,10 +127,18 @@ void loop()
   if (hour == 10)
   {
     hour10();
+    if(p_tm->tm_hour == 12+hour)
+    {
+      FastLED.setBrightness(BRIGHTNESS - DIMMINGBRIGHTNESS);
+    }
   }
   if (hour == 11)
   {
     hour11();
+    if(p_tm->tm_hour == 12+hour)
+    {
+      FastLED.setBrightness(BRIGHTNESS_NIGHT);
+    }
   }
 
   if (minute == 0)

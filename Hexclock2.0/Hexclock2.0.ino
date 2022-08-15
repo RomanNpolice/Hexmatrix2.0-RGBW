@@ -11,15 +11,17 @@
 #define LED_TYPE    WS2812B
 #define COLOR_ORDER RGB
 #define NUM_LEDS    96
-#define BRIGHTNESS  255
+#define BRIGHTNESS  180
+#define DIMMINGBRIGHTNESS 80
+#define BRIGHTNESS_NIGHT  30
 #define MAXULONG 4294967295
 
 CRGB leds[NUM_LEDS];
 
 //Digits color values in RGB
 int r = 255;
-int g = 255;
-int b = 255;
+int g = 220;
+int b = 180;
 
 const char* ESP_HOST_NAME = "esp-" + ESP.getFlashChipId();
 
@@ -109,6 +111,7 @@ void loop()
   if (hour == 7)
   {
     hour7();
+    FastLED.setBrightness(BRIGHTNESS);
   }
   if (hour == 8)
   {
@@ -121,10 +124,18 @@ void loop()
   if (hour == 10)
   {
     hour10();
+    if(p_tm->tm_hour == 12+hour)
+    {
+      FastLED.setBrightness(BRIGHTNESS - DIMMINGBRIGHTNESS);
+    }
   }
   if (hour == 11)
   {
     hour11();
+    if(p_tm->tm_hour == 12+hour)
+    {
+      FastLED.setBrightness(BRIGHTNESS_NIGHT);
+    }
   }
 
   if (minute == 0)
@@ -1469,19 +1480,19 @@ void min50()
 }
 void min51()
 {
-  leds[62] = CRGB(0, 255, 0);
-  leds[64] = CRGB(0, 255, 0);
-  leds[65] = CRGB(0, 255, 0);
-  leds[70] = CRGB(0, 255, 0);
-  leds[73] = CRGB(0, 255, 0);
-  leds[78] = CRGB(0, 255, 0);
-  leds[80] = CRGB(0, 255, 0);
-  leds[81] = CRGB(0, 255, 0);
-  leds[86] = CRGB(0, 255, 0);
-  leds[88] = CRGB(0, 255, 0);
-  leds[90] = CRGB(0, 255, 0);
-  leds[92] = CRGB(0, 255, 0);
-  leds[93] = CRGB(0, 255, 0);
+  leds[62] = CRGB(r, g, b);
+  leds[64] = CRGB(r, g, b);
+  leds[65] = CRGB(r, g, b);
+  leds[70] = CRGB(r, g, b);
+  leds[73] = CRGB(r, g, b);
+  leds[78] = CRGB(r, g, b);
+  leds[80] = CRGB(r, g, b);
+  leds[81] = CRGB(r, g, b);
+  leds[86] = CRGB(r, g, b);
+  leds[88] = CRGB(r, g, b);
+  leds[90] = CRGB(r, g, b);
+  leds[92] = CRGB(r, g, b);
+  leds[93] = CRGB(r, g, b);
 }
 void min52()
 {
