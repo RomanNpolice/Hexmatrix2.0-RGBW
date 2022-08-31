@@ -11,7 +11,7 @@
 #define LED_TYPE    WS2812B
 #define COLOR_ORDER RGB
 #define NUM_LEDS    96
-#define BRIGHTNESS  180
+#define BRIGHTNESS  255
 #define DIMMINGBRIGHTNESS 80
 #define BRIGHTNESS_NIGHT  30
 #define MAXULONG 4294967295
@@ -427,7 +427,7 @@ void pride()
 /*------------------------------------Wifi Setup------------------------------------*/
 void wifiledset(){
   FastLED.clear();
-  leds[] = CRGB(r, g, b);
+  leds[87] = CRGB(r, g, b);
   FastLED.show();
 }
 
