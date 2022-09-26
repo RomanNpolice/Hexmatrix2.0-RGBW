@@ -42,7 +42,6 @@ void connectWifi()
 void setup() {
   Serial.begin(115200);
   delay(500);
-  connectWifi();
   Serial.println();
   Serial.println("\n\nNext Loop-Step: " + String(millis()) + ":");
   configTime(timezone, dst, "pool.ntp.org", "time.nist.gov");
@@ -50,6 +49,7 @@ void setup() {
   .setCorrection(TypicalLEDStrip)
   .setDither(BRIGHTNESS < 255);
   FastLED.setBrightness(BRIGHTNESS);
+  connectWifi();
 }
 
 
@@ -69,9 +69,6 @@ void loop()
   int minute = p_tm->tm_min;
   if (hour > 12)
   {
-    if (p_tm->tm_hour >= hour){
-      FastLED.setBrightness(BRIGHTNESS_NIGHT);
-    }
     hour = hour - 12;
   }
   //    Serial.print(hour);
@@ -82,6 +79,9 @@ void loop()
   pride();
   if (hour == 0 || hour == 12)
   {
+    if (p_tm->tm_hour >= hour - 1){
+      FastLED.setBrightness(BRIGHTNESS_NIGHT);
+    }
     hour12();
     if (millis() > MAXULONG - 3300000)
     {
@@ -265,6 +265,9 @@ void loop()
   if (minute == 30)
   {
     min30();
+    if (p_tm->tm_hour == 12 + 1){
+      FastLED.setBrightness(BRIGHTNESS);
+    }
   }
   if (minute == 31)
   {
@@ -430,7 +433,32 @@ void pride()
 /*------------------------------------Wifi Setup------------------------------------*/
 void wifiledset(){
   FastLED.clear();
-  leds[87] = CRGB(r, g, b);
+  leds[35] = CRGB(r, g/2, b);
+  leds[21] = CRGB(r, g/2, b);
+  leds[17] = CRGB(r, g/2, b);
+  leds[16] = CRGB(r, g/2, b);
+  leds[8]  = CRGB(r, g/2, b);
+  leds[9]  = CRGB(r, g/2, b);
+  leds[15] = CRGB(r, g/2, b);
+  leds[14] = CRGB(r, g/2, b);
+  leds[28] = CRGB(r, g/2, b);
+  leds[26] = CRGB(r, g/2, b);
+  leds[45] = CRGB(r, g/2, b);
+  leds[41] = CRGB(r, g/2, b);
+  leds[31] = CRGB(r, g/2, b);
+  leds[32] = CRGB(r, g/2, b);
+  leds[38] = CRGB(r, g/2, b);
+  leds[50] = CRGB(r, g/2, b);
+  leds[62] = CRGB(r, g/2, b);
+  leds[56] = CRGB(r, g/2, b);
+  leds[55] = CRGB(r, g/2, b);
+  leds[65] = CRGB(r, g/2, b);
+  leds[71] = CRGB(r, g/2, b);
+  leds[72] = CRGB(r, g/2, b);
+  leds[80] = CRGB(r, g/2, b);
+  leds[79] = CRGB(r, g/2, b);
+  leds[86] = CRGB(r, g/2, b);
+  leds[87] = CRGB(r, g/2, b);
   FastLED.show();
 }
 

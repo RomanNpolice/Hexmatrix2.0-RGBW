@@ -11,7 +11,7 @@
 #define DATA_PIN    2
 #define LED_TYPE    SK6812
 #define COLOR_ORDER RGB
-#define NUM_LEDS    96  
+#define NUM_LEDS    96
 #define BRIGHTNESS  255
 #define DIMMINGBRIGHTNESS 80
 #define BRIGHTNESS_NIGHT  30
@@ -36,6 +36,7 @@ WiFiClient wifiClient;
 
 void connectWifi()
 {
+  wifiledset();
   WiFi.mode(WIFI_STA);
   WiFiManager wm;
   wm.autoConnect("RGB HexClock");
@@ -44,7 +45,6 @@ void connectWifi()
 void setup() {
   Serial.begin(115200);
   delay(500);
-  connectWifi(); 
   Serial.println();
   Serial.println("\n\nNext Loop-Step: " + String(millis()) + ":");
   configTime(timezone, dst, "pool.ntp.org", "time.nist.gov");
@@ -52,6 +52,7 @@ void setup() {
   .setCorrection(TypicalLEDStrip)
   .setDither(BRIGHTNESS < 255);
   FastLED.setBrightness(BRIGHTNESS);
+  connectWifi();
 }
 
 
@@ -59,31 +60,31 @@ void loop()
 {
   time_t now = time(nullptr);
   struct tm* p_tm = localtime(&now);
-//  Serial.print("-------------------------------------------------\n");
-//  Serial.print("Date & Time : ");
-//  Serial.print(p_tm->tm_mday);
-//  Serial.print("/");
-//  Serial.print(p_tm->tm_mon + 1);
-//  Serial.print("/");
-//  Serial.print(p_tm->tm_year + 1900);
-//  Serial.print(" ");
+  //  Serial.print("-------------------------------------------------\n");
+  //  Serial.print("Date & Time : ");
+  //  Serial.print(p_tm->tm_mday);
+  //  Serial.print("/");
+  //  Serial.print(p_tm->tm_mon + 1);
+  //  Serial.print("/");
+  //  Serial.print(p_tm->tm_year + 1900);
+  //  Serial.print(" ");
   int hour = p_tm->tm_hour;
   int minute = p_tm->tm_min;
   if (hour > 12)
   {
-    if (p_tm->tm_hour >= hour){
-      FastLED.setBrightness(BRIGHTNESS_NIGHT);
-    }
     hour = hour - 12;
   }
-//  Serial.print(hour);
-//  Serial.print(":");
-//  Serial.print(minute);
-//  Serial.print(":");
-//  Serial.println(p_tm->tm_sec);
+  //  Serial.print(p_tm->tm_hour);
+  //  Serial.print(":");
+  //  Serial.print(minute);
+  //  Serial.print(":");
+  //  Serial.println(p_tm->tm_sec);
   pride();
   if (hour == 0 || hour == 12)
   {
+    if (p_tm->tm_hour == 12) {
+      FastLED.setBrightness(BRIGHTNESS_NIGHT);
+    }
     hour12();
     if (millis() > MAXULONG - 3300000)
     {
@@ -130,7 +131,7 @@ void loop()
   if (hour == 10)
   {
     hour10();
-    if (p_tm->tm_hour >= 11+hour)
+    if (p_tm->tm_hour >= 11 + hour)
     {
       FastLED.setBrightness(BRIGHTNESS - DIMMINGBRIGHTNESS);
     }
@@ -138,7 +139,7 @@ void loop()
   if (hour == 11)
   {
     hour11();
-    if (p_tm->tm_hour >= 11+hour)
+    if (p_tm->tm_hour >= 11 + hour)
     {
       FastLED.setBrightness(BRIGHTNESS_NIGHT);
     }
@@ -267,7 +268,7 @@ void loop()
   if (minute == 30)
   {
     min30();
-    if (p_tm->tm_hour == 11 + 1){
+    if (p_tm->tm_hour == 12 + 1) {
       FastLED.setBrightness(BRIGHTNESS);
     }
   }
@@ -431,6 +432,37 @@ void pride()
 
     nblend((CRGB&)ledsRGB[pixelnumber], newcolor, 64);
   }
+}
+/*------------------------------------Wifi Setup------------------------------------*/
+void wifiledset() {
+  FastLED.clear();
+  leds[35] = CRGB(r, g / 2, b, 0);
+  leds[21] = CRGB(r, g / 2, b, 0);
+  leds[17] = CRGB(r, g / 2, b, 0);
+  leds[16] = CRGB(r, g / 2, b, 0);
+  leds[8]  = CRGB(r, g / 2, b, 0);
+  leds[9]  = CRGB(r, g / 2, b, 0);
+  leds[15] = CRGB(r, g / 2, b, 0);
+  leds[14] = CRGB(r, g / 2, b, 0);
+  leds[28] = CRGB(r, g / 2, b, 0);
+  leds[26] = CRGB(r, g / 2, b, 0);
+  leds[45] = CRGB(r, g / 2, b, 0);
+  leds[41] = CRGB(r, g / 2, b, 0);
+  leds[31] = CRGB(r, g / 2, b, 0);
+  leds[32] = CRGB(r, g / 2, b, 0);
+  leds[38] = CRGB(r, g / 2, b, 0);
+  leds[50] = CRGB(r, g / 2, b, 0);
+  leds[62] = CRGB(r, g / 2, b, 0);
+  leds[56] = CRGB(r, g / 2, b, 0);
+  leds[55] = CRGB(r, g / 2, b, 0);
+  leds[65] = CRGB(r, g / 2, b, 0);
+  leds[71] = CRGB(r, g / 2, b, 0);
+  leds[72] = CRGB(r, g / 2, b, 0);
+  leds[80] = CRGB(r, g / 2, b, 0);
+  leds[79] = CRGB(r, g / 2, b, 0);
+  leds[86] = CRGB(r, g / 2, b, 0);
+  leds[87] = CRGB(r, g / 2, b, 0);
+  FastLED.show();
 }
 
 /*------------------------------------Hour LEDs------------------------------------*/
