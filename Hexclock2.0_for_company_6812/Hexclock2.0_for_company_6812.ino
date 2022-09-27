@@ -17,8 +17,8 @@
 #define BRIGHTNESS_NIGHT  30
 #define MAXULONG 4294967295
 
-CRGBW ledsRGB[NUM_LEDS];
-CRGB *leds = (CRGB *) &ledsRGB[0];
+CRGBW leds[NUM_LEDS];
+CRGB *_leds = (CRGB *) &leds[0];
 
 //Digits color values in RGB
 int r = 0;
@@ -48,7 +48,7 @@ void setup() {
   Serial.println();
   Serial.println("\n\nNext Loop-Step: " + String(millis()) + ":");
   configTime(timezone, dst, "pool.ntp.org", "time.nist.gov");
-  FastLED.addLeds<LED_TYPE, DATA_PIN, COLOR_ORDER>(leds, getRGBWsize(NUM_LEDS))
+  FastLED.addLeds<LED_TYPE, DATA_PIN, COLOR_ORDER>(_leds, getRGBWsize(NUM_LEDS))
   .setCorrection(TypicalLEDStrip)
   .setDither(BRIGHTNESS < 255);
   FastLED.setBrightness(BRIGHTNESS);
@@ -430,1261 +430,1261 @@ void pride()
     uint16_t pixelnumber = i;
     pixelnumber = (NUM_LEDS - 1) - pixelnumber;
 
-    nblend((CRGB&)ledsRGB[pixelnumber], newcolor, 64);
+    nblend((CRGB&)leds[pixelnumber], newcolor, 64);
   }
 }
 /*------------------------------------Wifi Setup------------------------------------*/
 void wifiledset() {
   FastLED.clear();
-  leds[35] = CRGB(r, g / 2, b, 0);
-  leds[21] = CRGB(r, g / 2, b, 0);
-  leds[17] = CRGB(r, g / 2, b, 0);
-  leds[16] = CRGB(r, g / 2, b, 0);
-  leds[8]  = CRGB(r, g / 2, b, 0);
-  leds[9]  = CRGB(r, g / 2, b, 0);
-  leds[15] = CRGB(r, g / 2, b, 0);
-  leds[14] = CRGB(r, g / 2, b, 0);
-  leds[28] = CRGB(r, g / 2, b, 0);
-  leds[26] = CRGB(r, g / 2, b, 0);
-  leds[45] = CRGB(r, g / 2, b, 0);
-  leds[41] = CRGB(r, g / 2, b, 0);
-  leds[31] = CRGB(r, g / 2, b, 0);
-  leds[32] = CRGB(r, g / 2, b, 0);
-  leds[38] = CRGB(r, g / 2, b, 0);
-  leds[50] = CRGB(r, g / 2, b, 0);
-  leds[62] = CRGB(r, g / 2, b, 0);
-  leds[56] = CRGB(r, g / 2, b, 0);
-  leds[55] = CRGB(r, g / 2, b, 0);
-  leds[65] = CRGB(r, g / 2, b, 0);
-  leds[71] = CRGB(r, g / 2, b, 0);
-  leds[72] = CRGB(r, g / 2, b, 0);
-  leds[80] = CRGB(r, g / 2, b, 0);
-  leds[79] = CRGB(r, g / 2, b, 0);
-  leds[86] = CRGB(r, g / 2, b, 0);
-  leds[87] = CRGB(r, g / 2, b, 0);
+  leds[35] = CRGBW(w, w/2, w, 0);
+  leds[21] = CRGBW(w, w/2, w, 0);
+  leds[17] = CRGBW(w, w/2, w, 0);
+  leds[16] = CRGBW(w, w/2, w, 0);
+  leds[8]  = CRGBW(w, w/2, w, 0);
+  leds[9]  = CRGBW(w, w/2, w, 0);
+  leds[15] = CRGBW(w, w/2, w, 0);
+  leds[14] = CRGBW(w, w/2, w, 0);
+  leds[28] = CRGBW(w, w/2, w, 0);
+  leds[26] = CRGBW(w, w/2, w, 0);
+  leds[45] = CRGBW(w, w/2, w, 0);
+  leds[41] = CRGBW(w, w/2, w, 0);
+  leds[31] = CRGBW(w, w/2, w, 0);
+  leds[32] = CRGBW(w, w/2, w, 0);
+  leds[38] = CRGBW(w, w/2, w, 0);
+  leds[50] = CRGBW(w, w/2, w, 0);
+  leds[62] = CRGBW(w, w/2, w, 0);
+  leds[56] = CRGBW(w, w/2, w, 0);
+  leds[55] = CRGBW(w, w/2, w, 0);
+  leds[65] = CRGBW(w, w/2, w, 0);
+  leds[71] = CRGBW(w, w/2, w, 0);
+  leds[72] = CRGBW(w, w/2, w, 0);
+  leds[80] = CRGBW(w, w/2, w, 0);
+  leds[79] = CRGBW(w, w/2, w, 0);
+  leds[86] = CRGBW(w, w/2, w, 0);
+  leds[87] = CRGBW(w, w/2, w, 0);
   FastLED.show();
 }
 
 /*------------------------------------Hour LEDs------------------------------------*/
 void hour12()
 {
-  ledsRGB[2] = CRGBW(r, g, b, w);
-  ledsRGB[3] = CRGBW(r, g, b, w);
-  ledsRGB[5] = CRGBW(r, g, b, w);
-  ledsRGB[7] = CRGBW(r, g, b, w);
-  ledsRGB[10] = CRGBW(r, g, b, w);
-  ledsRGB[14] = CRGBW(r, g, b, w);
-  ledsRGB[15] = CRGBW(r, g, b, w);
-  ledsRGB[17] = CRGBW(r, g, b, w);
-  ledsRGB[22] = CRGBW(r, g, b, w);
-  ledsRGB[24] = CRGBW(r, g, b, w);
-  ledsRGB[30] = CRGBW(r, g, b, w);
-  ledsRGB[31] = CRGBW(r, g, b, w);
-  ledsRGB[33] = CRGBW(r, g, b, w);
+  leds[2] = CRGBW(r, g, b, w);
+  leds[3] = CRGBW(r, g, b, w);
+  leds[5] = CRGBW(r, g, b, w);
+  leds[7] = CRGBW(r, g, b, w);
+  leds[10] = CRGBW(r, g, b, w);
+  leds[14] = CRGBW(r, g, b, w);
+  leds[15] = CRGBW(r, g, b, w);
+  leds[17] = CRGBW(r, g, b, w);
+  leds[22] = CRGBW(r, g, b, w);
+  leds[24] = CRGBW(r, g, b, w);
+  leds[30] = CRGBW(r, g, b, w);
+  leds[31] = CRGBW(r, g, b, w);
+  leds[33] = CRGBW(r, g, b, w);
 }
 void hour1()
 {
-  ledsRGB[9] = CRGBW(r, g, b, w);
-  ledsRGB[15] = CRGBW(r, g, b, w);
-  ledsRGB[24] = CRGBW(r, g, b, w);
-  ledsRGB[31] = CRGBW(r, g, b, w);
-  ledsRGB[40] = CRGBW(r, g, b, w);
+  leds[9] = CRGBW(r, g, b, w);
+  leds[15] = CRGBW(r, g, b, w);
+  leds[24] = CRGBW(r, g, b, w);
+  leds[31] = CRGBW(r, g, b, w);
+  leds[40] = CRGBW(r, g, b, w);
 }
 void hour2()
 {
-  ledsRGB[8] = CRGBW(r, g, b, w);
-  ledsRGB[9] = CRGBW(r, g, b, w);
-  ledsRGB[15] = CRGBW(r, g, b, w);
-  ledsRGB[23] = CRGBW(r, g, b, w);
-  ledsRGB[24] = CRGBW(r, g, b, w);
-  ledsRGB[32] = CRGBW(r, g, b, w);
-  ledsRGB[39] = CRGBW(r, g, b, w);
-  ledsRGB[40] = CRGBW(r, g, b, w);
+  leds[8] = CRGBW(r, g, b, w);
+  leds[9] = CRGBW(r, g, b, w);
+  leds[15] = CRGBW(r, g, b, w);
+  leds[23] = CRGBW(r, g, b, w);
+  leds[24] = CRGBW(r, g, b, w);
+  leds[32] = CRGBW(r, g, b, w);
+  leds[39] = CRGBW(r, g, b, w);
+  leds[40] = CRGBW(r, g, b, w);
 }
 void hour3()
 {
-  ledsRGB[8] = CRGBW(r, g, b, w);
-  ledsRGB[9] = CRGBW(r, g, b, w);
-  ledsRGB[15] = CRGBW(r, g, b, w);
-  ledsRGB[23] = CRGBW(r, g, b, w);
-  ledsRGB[24] = CRGBW(r, g, b, w);
-  ledsRGB[31] = CRGBW(r, g, b, w);
-  ledsRGB[39] = CRGBW(r, g, b, w);
-  ledsRGB[40] = CRGBW(r, g, b, w);
+  leds[8] = CRGBW(r, g, b, w);
+  leds[9] = CRGBW(r, g, b, w);
+  leds[15] = CRGBW(r, g, b, w);
+  leds[23] = CRGBW(r, g, b, w);
+  leds[24] = CRGBW(r, g, b, w);
+  leds[31] = CRGBW(r, g, b, w);
+  leds[39] = CRGBW(r, g, b, w);
+  leds[40] = CRGBW(r, g, b, w);
 }
 void hour4()
 {
-  ledsRGB[15] = CRGBW(r, g, b, w);
-  ledsRGB[16] = CRGBW(r, g, b, w);
-  ledsRGB[23] = CRGBW(r, g, b, w);
-  ledsRGB[24] = CRGBW(r, g, b, w);
-  ledsRGB[31] = CRGBW(r, g, b, w);
-  ledsRGB[40] = CRGBW(r, g, b, w);
+  leds[15] = CRGBW(r, g, b, w);
+  leds[16] = CRGBW(r, g, b, w);
+  leds[23] = CRGBW(r, g, b, w);
+  leds[24] = CRGBW(r, g, b, w);
+  leds[31] = CRGBW(r, g, b, w);
+  leds[40] = CRGBW(r, g, b, w);
 }
 void hour5()
 {
-  ledsRGB[8] = CRGBW(r, g, b, w);
-  ledsRGB[9] = CRGBW(r, g, b, w);
-  ledsRGB[16] = CRGBW(r, g, b, w);
-  ledsRGB[23] = CRGBW(r, g, b, w);
-  ledsRGB[24] = CRGBW(r, g, b, w);
-  ledsRGB[31] = CRGBW(r, g, b, w);
-  ledsRGB[39] = CRGBW(r, g, b, w);
-  ledsRGB[40] = CRGBW(r, g, b, w);
+  leds[8] = CRGBW(r, g, b, w);
+  leds[9] = CRGBW(r, g, b, w);
+  leds[16] = CRGBW(r, g, b, w);
+  leds[23] = CRGBW(r, g, b, w);
+  leds[24] = CRGBW(r, g, b, w);
+  leds[31] = CRGBW(r, g, b, w);
+  leds[39] = CRGBW(r, g, b, w);
+  leds[40] = CRGBW(r, g, b, w);
 }
 void hour6()
 {
-  ledsRGB[8] = CRGBW(r, g, b, w);
-  ledsRGB[9] = CRGBW(r, g, b, w);
-  ledsRGB[16] = CRGBW(r, g, b, w);
-  ledsRGB[23] = CRGBW(r, g, b, w);
-  ledsRGB[24] = CRGBW(r, g, b, w);
-  ledsRGB[31] = CRGBW(r, g, b, w);
-  ledsRGB[32] = CRGBW(r, g, b, w);
-  ledsRGB[39] = CRGBW(r, g, b, w);
-  ledsRGB[40] = CRGBW(r, g, b, w);
+  leds[8] = CRGBW(r, g, b, w);
+  leds[9] = CRGBW(r, g, b, w);
+  leds[16] = CRGBW(r, g, b, w);
+  leds[23] = CRGBW(r, g, b, w);
+  leds[24] = CRGBW(r, g, b, w);
+  leds[31] = CRGBW(r, g, b, w);
+  leds[32] = CRGBW(r, g, b, w);
+  leds[39] = CRGBW(r, g, b, w);
+  leds[40] = CRGBW(r, g, b, w);
 }
 void hour7()
 {
-  ledsRGB[8] = CRGBW(r, g, b, w);
-  ledsRGB[9] = CRGBW(r, g, b, w);
-  ledsRGB[15] = CRGBW(r, g, b, w);
-  ledsRGB[16] = CRGBW(r, g, b, w);
-  ledsRGB[24] = CRGBW(r, g, b, w);
-  ledsRGB[31] = CRGBW(r, g, b, w);
-  ledsRGB[40] = CRGBW(r, g, b, w);
+  leds[8] = CRGBW(r, g, b, w);
+  leds[9] = CRGBW(r, g, b, w);
+  leds[15] = CRGBW(r, g, b, w);
+  leds[16] = CRGBW(r, g, b, w);
+  leds[24] = CRGBW(r, g, b, w);
+  leds[31] = CRGBW(r, g, b, w);
+  leds[40] = CRGBW(r, g, b, w);
 }
 void hour8()
 {
-  ledsRGB[8] = CRGBW(r, g, b, w);
-  ledsRGB[9] = CRGBW(r, g, b, w);
-  ledsRGB[15] = CRGBW(r, g, b, w);
-  ledsRGB[16] = CRGBW(r, g, b, w);
-  ledsRGB[23] = CRGBW(r, g, b, w);
-  ledsRGB[24] = CRGBW(r, g, b, w);
-  ledsRGB[31] = CRGBW(r, g, b, w);
-  ledsRGB[32] = CRGBW(r, g, b, w);
-  ledsRGB[39] = CRGBW(r, g, b, w);
-  ledsRGB[40] = CRGBW(r, g, b, w);
+  leds[8] = CRGBW(r, g, b, w);
+  leds[9] = CRGBW(r, g, b, w);
+  leds[15] = CRGBW(r, g, b, w);
+  leds[16] = CRGBW(r, g, b, w);
+  leds[23] = CRGBW(r, g, b, w);
+  leds[24] = CRGBW(r, g, b, w);
+  leds[31] = CRGBW(r, g, b, w);
+  leds[32] = CRGBW(r, g, b, w);
+  leds[39] = CRGBW(r, g, b, w);
+  leds[40] = CRGBW(r, g, b, w);
 }
 void hour9()
 {
-  ledsRGB[8] = CRGBW(r, g, b, w);
-  ledsRGB[9] = CRGBW(r, g, b, w);
-  ledsRGB[15] = CRGBW(r, g, b, w);
-  ledsRGB[16] = CRGBW(r, g, b, w);
-  ledsRGB[23] = CRGBW(r, g, b, w);
-  ledsRGB[24] = CRGBW(r, g, b, w);
-  ledsRGB[31] = CRGBW(r, g, b, w);
-  ledsRGB[39] = CRGBW(r, g, b, w);
-  ledsRGB[40] = CRGBW(r, g, b, w);
+  leds[8] = CRGBW(r, g, b, w);
+  leds[9] = CRGBW(r, g, b, w);
+  leds[15] = CRGBW(r, g, b, w);
+  leds[16] = CRGBW(r, g, b, w);
+  leds[23] = CRGBW(r, g, b, w);
+  leds[24] = CRGBW(r, g, b, w);
+  leds[31] = CRGBW(r, g, b, w);
+  leds[39] = CRGBW(r, g, b, w);
+  leds[40] = CRGBW(r, g, b, w);
 }
 void hour10()
 {
-  ledsRGB[2] = CRGBW(r, g, b, w);
-  ledsRGB[3] = CRGBW(r, g, b, w);
-  ledsRGB[5] = CRGBW(r, g, b, w);
-  ledsRGB[7] = CRGBW(r, g, b, w);
-  ledsRGB[9] = CRGBW(r, g, b, w);
-  ledsRGB[10] = CRGBW(r, g, b, w);
-  ledsRGB[17] = CRGBW(r, g, b, w);
-  ledsRGB[22] = CRGBW(r, g, b, w);
-  ledsRGB[24] = CRGBW(r, g, b, w);
-  ledsRGB[25] = CRGBW(r, g, b, w);
-  ledsRGB[30] = CRGBW(r, g, b, w);
-  ledsRGB[31] = CRGBW(r, g, b, w);
-  ledsRGB[33] = CRGBW(r, g, b, w);
+  leds[2] = CRGBW(r, g, b, w);
+  leds[3] = CRGBW(r, g, b, w);
+  leds[5] = CRGBW(r, g, b, w);
+  leds[7] = CRGBW(r, g, b, w);
+  leds[9] = CRGBW(r, g, b, w);
+  leds[10] = CRGBW(r, g, b, w);
+  leds[17] = CRGBW(r, g, b, w);
+  leds[22] = CRGBW(r, g, b, w);
+  leds[24] = CRGBW(r, g, b, w);
+  leds[25] = CRGBW(r, g, b, w);
+  leds[30] = CRGBW(r, g, b, w);
+  leds[31] = CRGBW(r, g, b, w);
+  leds[33] = CRGBW(r, g, b, w);
 }
 void hour11()
 {
-  ledsRGB[3] = CRGBW(r, g, b, w);
-  ledsRGB[5] = CRGBW(r, g, b, w);
-  ledsRGB[7] = CRGBW(r, g, b, w);
-  ledsRGB[9] = CRGBW(r, g, b, w);
-  ledsRGB[15] = CRGBW(r, g, b, w);
-  ledsRGB[17] = CRGBW(r, g, b, w);
-  ledsRGB[22] = CRGBW(r, g, b, w);
-  ledsRGB[24] = CRGBW(r, g, b, w);
-  ledsRGB[31] = CRGBW(r, g, b, w);
-  ledsRGB[33] = CRGBW(r, g, b, w);
+  leds[3] = CRGBW(r, g, b, w);
+  leds[5] = CRGBW(r, g, b, w);
+  leds[7] = CRGBW(r, g, b, w);
+  leds[9] = CRGBW(r, g, b, w);
+  leds[15] = CRGBW(r, g, b, w);
+  leds[17] = CRGBW(r, g, b, w);
+  leds[22] = CRGBW(r, g, b, w);
+  leds[24] = CRGBW(r, g, b, w);
+  leds[31] = CRGBW(r, g, b, w);
+  leds[33] = CRGBW(r, g, b, w);
 }
 
 /*----------------------------Minutes LEDs----------------------------*/
 void min0()
 {
-  ledsRGB[62] = CRGBW(r, g, b, w);
-  ledsRGB[63] = CRGBW(r, g, b, w);
-  ledsRGB[64] = CRGBW(r, g, b, w);
-  ledsRGB[65] = CRGBW(r, g, b, w);
-  ledsRGB[70] = CRGBW(r, g, b, w);
-  ledsRGB[71] = CRGBW(r, g, b, w);
-  ledsRGB[72] = CRGBW(r, g, b, w);
-  ledsRGB[73] = CRGBW(r, g, b, w);
-  ledsRGB[85] = CRGBW(r, g, b, w);
-  ledsRGB[86] = CRGBW(r, g, b, w);
-  ledsRGB[87] = CRGBW(r, g, b, w);
-  ledsRGB[88] = CRGBW(r, g, b, w);
-  ledsRGB[90] = CRGBW(r, g, b, w);
-  ledsRGB[91] = CRGBW(r, g, b, w);
-  ledsRGB[92] = CRGBW(r, g, b, w);
-  ledsRGB[93] = CRGBW(r, g, b, w);
+  leds[62] = CRGBW(r, g, b, w);
+  leds[63] = CRGBW(r, g, b, w);
+  leds[64] = CRGBW(r, g, b, w);
+  leds[65] = CRGBW(r, g, b, w);
+  leds[70] = CRGBW(r, g, b, w);
+  leds[71] = CRGBW(r, g, b, w);
+  leds[72] = CRGBW(r, g, b, w);
+  leds[73] = CRGBW(r, g, b, w);
+  leds[85] = CRGBW(r, g, b, w);
+  leds[86] = CRGBW(r, g, b, w);
+  leds[87] = CRGBW(r, g, b, w);
+  leds[88] = CRGBW(r, g, b, w);
+  leds[90] = CRGBW(r, g, b, w);
+  leds[91] = CRGBW(r, g, b, w);
+  leds[92] = CRGBW(r, g, b, w);
+  leds[93] = CRGBW(r, g, b, w);
 }
 void min1()
 {
-  ledsRGB[62] = CRGBW(r, g, b, w);
-  ledsRGB[64] = CRGBW(r, g, b, w);
-  ledsRGB[65] = CRGBW(r, g, b, w);
-  ledsRGB[70] = CRGBW(r, g, b, w);
-  ledsRGB[71] = CRGBW(r, g, b, w);
-  ledsRGB[73] = CRGBW(r, g, b, w);
-  ledsRGB[78] = CRGBW(r, g, b, w);
-  ledsRGB[85] = CRGBW(r, g, b, w);
-  ledsRGB[86] = CRGBW(r, g, b, w);
-  ledsRGB[88] = CRGBW(r, g, b, w);
-  ledsRGB[90] = CRGBW(r, g, b, w);
-  ledsRGB[92] = CRGBW(r, g, b, w);
-  ledsRGB[93] = CRGBW(r, g, b, w);
+  leds[62] = CRGBW(r, g, b, w);
+  leds[64] = CRGBW(r, g, b, w);
+  leds[65] = CRGBW(r, g, b, w);
+  leds[70] = CRGBW(r, g, b, w);
+  leds[71] = CRGBW(r, g, b, w);
+  leds[73] = CRGBW(r, g, b, w);
+  leds[78] = CRGBW(r, g, b, w);
+  leds[85] = CRGBW(r, g, b, w);
+  leds[86] = CRGBW(r, g, b, w);
+  leds[88] = CRGBW(r, g, b, w);
+  leds[90] = CRGBW(r, g, b, w);
+  leds[92] = CRGBW(r, g, b, w);
+  leds[93] = CRGBW(r, g, b, w);
 }
 void min2()
 {
-  ledsRGB[62] = CRGBW(r, g, b, w);
-  ledsRGB[63] = CRGBW(r, g, b, w);
-  ledsRGB[64] = CRGBW(r, g, b, w);
-  ledsRGB[65] = CRGBW(r, g, b, w);
-  ledsRGB[70] = CRGBW(r, g, b, w);
-  ledsRGB[71] = CRGBW(r, g, b, w);
-  ledsRGB[73] = CRGBW(r, g, b, w);
-  ledsRGB[78] = CRGBW(r, g, b, w);
-  ledsRGB[79] = CRGBW(r, g, b, w);
-  ledsRGB[85] = CRGBW(r, g, b, w);
-  ledsRGB[86] = CRGBW(r, g, b, w);
-  ledsRGB[87] = CRGBW(r, g, b, w);
-  ledsRGB[90] = CRGBW(r, g, b, w);
-  ledsRGB[91] = CRGBW(r, g, b, w);
-  ledsRGB[92] = CRGBW(r, g, b, w);
-  ledsRGB[93] = CRGBW(r, g, b, w);
+  leds[62] = CRGBW(r, g, b, w);
+  leds[63] = CRGBW(r, g, b, w);
+  leds[64] = CRGBW(r, g, b, w);
+  leds[65] = CRGBW(r, g, b, w);
+  leds[70] = CRGBW(r, g, b, w);
+  leds[71] = CRGBW(r, g, b, w);
+  leds[73] = CRGBW(r, g, b, w);
+  leds[78] = CRGBW(r, g, b, w);
+  leds[79] = CRGBW(r, g, b, w);
+  leds[85] = CRGBW(r, g, b, w);
+  leds[86] = CRGBW(r, g, b, w);
+  leds[87] = CRGBW(r, g, b, w);
+  leds[90] = CRGBW(r, g, b, w);
+  leds[91] = CRGBW(r, g, b, w);
+  leds[92] = CRGBW(r, g, b, w);
+  leds[93] = CRGBW(r, g, b, w);
 }
 void min3()
 {
-  ledsRGB[62] = CRGBW(r, g, b, w);
-  ledsRGB[63] = CRGBW(r, g, b, w);
-  ledsRGB[64] = CRGBW(r, g, b, w);
-  ledsRGB[65] = CRGBW(r, g, b, w);
-  ledsRGB[70] = CRGBW(r, g, b, w);
-  ledsRGB[71] = CRGBW(r, g, b, w);
-  ledsRGB[73] = CRGBW(r, g, b, w);
-  ledsRGB[78] = CRGBW(r, g, b, w);
-  ledsRGB[79] = CRGBW(r, g, b, w);
-  ledsRGB[85] = CRGBW(r, g, b, w);
-  ledsRGB[86] = CRGBW(r, g, b, w);
-  ledsRGB[88] = CRGBW(r, g, b, w);
-  ledsRGB[90] = CRGBW(r, g, b, w);
-  ledsRGB[91] = CRGBW(r, g, b, w);
-  ledsRGB[92] = CRGBW(r, g, b, w);
-  ledsRGB[93] = CRGBW(r, g, b, w);
+  leds[62] = CRGBW(r, g, b, w);
+  leds[63] = CRGBW(r, g, b, w);
+  leds[64] = CRGBW(r, g, b, w);
+  leds[65] = CRGBW(r, g, b, w);
+  leds[70] = CRGBW(r, g, b, w);
+  leds[71] = CRGBW(r, g, b, w);
+  leds[73] = CRGBW(r, g, b, w);
+  leds[78] = CRGBW(r, g, b, w);
+  leds[79] = CRGBW(r, g, b, w);
+  leds[85] = CRGBW(r, g, b, w);
+  leds[86] = CRGBW(r, g, b, w);
+  leds[88] = CRGBW(r, g, b, w);
+  leds[90] = CRGBW(r, g, b, w);
+  leds[91] = CRGBW(r, g, b, w);
+  leds[92] = CRGBW(r, g, b, w);
+  leds[93] = CRGBW(r, g, b, w);
 }
 void min4()
 {
-  ledsRGB[64] = CRGBW(r, g, b, w);
-  ledsRGB[65] = CRGBW(r, g, b, w);
-  ledsRGB[70] = CRGBW(r, g, b, w);
-  ledsRGB[71] = CRGBW(r, g, b, w);
-  ledsRGB[72] = CRGBW(r, g, b, w);
-  ledsRGB[73] = CRGBW(r, g, b, w);
-  ledsRGB[78] = CRGBW(r, g, b, w);
-  ledsRGB[79] = CRGBW(r, g, b, w);
-  ledsRGB[85] = CRGBW(r, g, b, w);
-  ledsRGB[86] = CRGBW(r, g, b, w);
-  ledsRGB[88] = CRGBW(r, g, b, w);
-  ledsRGB[90] = CRGBW(r, g, b, w);
-  ledsRGB[92] = CRGBW(r, g, b, w);
-  ledsRGB[93] = CRGBW(r, g, b, w);
+  leds[64] = CRGBW(r, g, b, w);
+  leds[65] = CRGBW(r, g, b, w);
+  leds[70] = CRGBW(r, g, b, w);
+  leds[71] = CRGBW(r, g, b, w);
+  leds[72] = CRGBW(r, g, b, w);
+  leds[73] = CRGBW(r, g, b, w);
+  leds[78] = CRGBW(r, g, b, w);
+  leds[79] = CRGBW(r, g, b, w);
+  leds[85] = CRGBW(r, g, b, w);
+  leds[86] = CRGBW(r, g, b, w);
+  leds[88] = CRGBW(r, g, b, w);
+  leds[90] = CRGBW(r, g, b, w);
+  leds[92] = CRGBW(r, g, b, w);
+  leds[93] = CRGBW(r, g, b, w);
 }
 void min5()
 {
-  ledsRGB[62] = CRGBW(r, g, b, w);
-  ledsRGB[63] = CRGBW(r, g, b, w);
-  ledsRGB[64] = CRGBW(r, g, b, w);
-  ledsRGB[65] = CRGBW(r, g, b, w);
-  ledsRGB[70] = CRGBW(r, g, b, w);
-  ledsRGB[71] = CRGBW(r, g, b, w);
-  ledsRGB[72] = CRGBW(r, g, b, w);
-  ledsRGB[78] = CRGBW(r, g, b, w);
-  ledsRGB[79] = CRGBW(r, g, b, w);
-  ledsRGB[85] = CRGBW(r, g, b, w);
-  ledsRGB[86] = CRGBW(r, g, b, w);
-  ledsRGB[88] = CRGBW(r, g, b, w);
-  ledsRGB[90] = CRGBW(r, g, b, w);
-  ledsRGB[91] = CRGBW(r, g, b, w);
-  ledsRGB[92] = CRGBW(r, g, b, w);
-  ledsRGB[93] = CRGBW(r, g, b, w);
+  leds[62] = CRGBW(r, g, b, w);
+  leds[63] = CRGBW(r, g, b, w);
+  leds[64] = CRGBW(r, g, b, w);
+  leds[65] = CRGBW(r, g, b, w);
+  leds[70] = CRGBW(r, g, b, w);
+  leds[71] = CRGBW(r, g, b, w);
+  leds[72] = CRGBW(r, g, b, w);
+  leds[78] = CRGBW(r, g, b, w);
+  leds[79] = CRGBW(r, g, b, w);
+  leds[85] = CRGBW(r, g, b, w);
+  leds[86] = CRGBW(r, g, b, w);
+  leds[88] = CRGBW(r, g, b, w);
+  leds[90] = CRGBW(r, g, b, w);
+  leds[91] = CRGBW(r, g, b, w);
+  leds[92] = CRGBW(r, g, b, w);
+  leds[93] = CRGBW(r, g, b, w);
 }
 void min6()
 {
-  ledsRGB[62] = CRGBW(r, g, b, w);
-  ledsRGB[63] = CRGBW(r, g, b, w);
-  ledsRGB[64] = CRGBW(r, g, b, w);
-  ledsRGB[65] = CRGBW(r, g, b, w);
-  ledsRGB[70] = CRGBW(r, g, b, w);
-  ledsRGB[71] = CRGBW(r, g, b, w);
-  ledsRGB[72] = CRGBW(r, g, b, w);
-  ledsRGB[78] = CRGBW(r, g, b, w);
-  ledsRGB[79] = CRGBW(r, g, b, w);
-  ledsRGB[85] = CRGBW(r, g, b, w);
-  ledsRGB[86] = CRGBW(r, g, b, w);
-  ledsRGB[87] = CRGBW(r, g, b, w);
-  ledsRGB[88] = CRGBW(r, g, b, w);
-  ledsRGB[90] = CRGBW(r, g, b, w);
-  ledsRGB[91] = CRGBW(r, g, b, w);
-  ledsRGB[92] = CRGBW(r, g, b, w);
-  ledsRGB[93] = CRGBW(r, g, b, w);
+  leds[62] = CRGBW(r, g, b, w);
+  leds[63] = CRGBW(r, g, b, w);
+  leds[64] = CRGBW(r, g, b, w);
+  leds[65] = CRGBW(r, g, b, w);
+  leds[70] = CRGBW(r, g, b, w);
+  leds[71] = CRGBW(r, g, b, w);
+  leds[72] = CRGBW(r, g, b, w);
+  leds[78] = CRGBW(r, g, b, w);
+  leds[79] = CRGBW(r, g, b, w);
+  leds[85] = CRGBW(r, g, b, w);
+  leds[86] = CRGBW(r, g, b, w);
+  leds[87] = CRGBW(r, g, b, w);
+  leds[88] = CRGBW(r, g, b, w);
+  leds[90] = CRGBW(r, g, b, w);
+  leds[91] = CRGBW(r, g, b, w);
+  leds[92] = CRGBW(r, g, b, w);
+  leds[93] = CRGBW(r, g, b, w);
 }
 void min7()
 {
-  ledsRGB[62] = CRGBW(r, g, b, w);
-  ledsRGB[63] = CRGBW(r, g, b, w);
-  ledsRGB[64] = CRGBW(r, g, b, w);
-  ledsRGB[65] = CRGBW(r, g, b, w);
-  ledsRGB[70] = CRGBW(r, g, b, w);
-  ledsRGB[71] = CRGBW(r, g, b, w);
-  ledsRGB[72] = CRGBW(r, g, b, w);
-  ledsRGB[73] = CRGBW(r, g, b, w);
-  ledsRGB[78] = CRGBW(r, g, b, w);
-  ledsRGB[85] = CRGBW(r, g, b, w);
-  ledsRGB[86] = CRGBW(r, g, b, w);
-  ledsRGB[88] = CRGBW(r, g, b, w);
-  ledsRGB[90] = CRGBW(r, g, b, w);
-  ledsRGB[92] = CRGBW(r, g, b, w);
-  ledsRGB[93] = CRGBW(r, g, b, w);
+  leds[62] = CRGBW(r, g, b, w);
+  leds[63] = CRGBW(r, g, b, w);
+  leds[64] = CRGBW(r, g, b, w);
+  leds[65] = CRGBW(r, g, b, w);
+  leds[70] = CRGBW(r, g, b, w);
+  leds[71] = CRGBW(r, g, b, w);
+  leds[72] = CRGBW(r, g, b, w);
+  leds[73] = CRGBW(r, g, b, w);
+  leds[78] = CRGBW(r, g, b, w);
+  leds[85] = CRGBW(r, g, b, w);
+  leds[86] = CRGBW(r, g, b, w);
+  leds[88] = CRGBW(r, g, b, w);
+  leds[90] = CRGBW(r, g, b, w);
+  leds[92] = CRGBW(r, g, b, w);
+  leds[93] = CRGBW(r, g, b, w);
 }
 void min8()
 {
-  ledsRGB[62] = CRGBW(r, g, b, w);
-  ledsRGB[63] = CRGBW(r, g, b, w);
-  ledsRGB[64] = CRGBW(r, g, b, w);
-  ledsRGB[65] = CRGBW(r, g, b, w);
-  ledsRGB[70] = CRGBW(r, g, b, w);
-  ledsRGB[71] = CRGBW(r, g, b, w);
-  ledsRGB[72] = CRGBW(r, g, b, w);
-  ledsRGB[73] = CRGBW(r, g, b, w);
-  ledsRGB[78] = CRGBW(r, g, b, w);
-  ledsRGB[79] = CRGBW(r, g, b, w);
-  ledsRGB[85] = CRGBW(r, g, b, w);
-  ledsRGB[86] = CRGBW(r, g, b, w);
-  ledsRGB[87] = CRGBW(r, g, b, w);
-  ledsRGB[88] = CRGBW(r, g, b, w);
-  ledsRGB[90] = CRGBW(r, g, b, w);
-  ledsRGB[91] = CRGBW(r, g, b, w);
-  ledsRGB[92] = CRGBW(r, g, b, w);
-  ledsRGB[93] = CRGBW(r, g, b, w);
+  leds[62] = CRGBW(r, g, b, w);
+  leds[63] = CRGBW(r, g, b, w);
+  leds[64] = CRGBW(r, g, b, w);
+  leds[65] = CRGBW(r, g, b, w);
+  leds[70] = CRGBW(r, g, b, w);
+  leds[71] = CRGBW(r, g, b, w);
+  leds[72] = CRGBW(r, g, b, w);
+  leds[73] = CRGBW(r, g, b, w);
+  leds[78] = CRGBW(r, g, b, w);
+  leds[79] = CRGBW(r, g, b, w);
+  leds[85] = CRGBW(r, g, b, w);
+  leds[86] = CRGBW(r, g, b, w);
+  leds[87] = CRGBW(r, g, b, w);
+  leds[88] = CRGBW(r, g, b, w);
+  leds[90] = CRGBW(r, g, b, w);
+  leds[91] = CRGBW(r, g, b, w);
+  leds[92] = CRGBW(r, g, b, w);
+  leds[93] = CRGBW(r, g, b, w);
 }
 void min9()
 {
-  ledsRGB[62] = CRGBW(r, g, b, w);
-  ledsRGB[63] = CRGBW(r, g, b, w);
-  ledsRGB[64] = CRGBW(r, g, b, w);
-  ledsRGB[65] = CRGBW(r, g, b, w);
-  ledsRGB[70] = CRGBW(r, g, b, w);
-  ledsRGB[71] = CRGBW(r, g, b, w);
-  ledsRGB[72] = CRGBW(r, g, b, w);
-  ledsRGB[73] = CRGBW(r, g, b, w);
-  ledsRGB[78] = CRGBW(r, g, b, w);
-  ledsRGB[79] = CRGBW(r, g, b, w);
-  ledsRGB[85] = CRGBW(r, g, b, w);
-  ledsRGB[86] = CRGBW(r, g, b, w);
-  ledsRGB[88] = CRGBW(r, g, b, w);
-  ledsRGB[90] = CRGBW(r, g, b, w);
-  ledsRGB[91] = CRGBW(r, g, b, w);
-  ledsRGB[92] = CRGBW(r, g, b, w);
-  ledsRGB[93] = CRGBW(r, g, b, w);
+  leds[62] = CRGBW(r, g, b, w);
+  leds[63] = CRGBW(r, g, b, w);
+  leds[64] = CRGBW(r, g, b, w);
+  leds[65] = CRGBW(r, g, b, w);
+  leds[70] = CRGBW(r, g, b, w);
+  leds[71] = CRGBW(r, g, b, w);
+  leds[72] = CRGBW(r, g, b, w);
+  leds[73] = CRGBW(r, g, b, w);
+  leds[78] = CRGBW(r, g, b, w);
+  leds[79] = CRGBW(r, g, b, w);
+  leds[85] = CRGBW(r, g, b, w);
+  leds[86] = CRGBW(r, g, b, w);
+  leds[88] = CRGBW(r, g, b, w);
+  leds[90] = CRGBW(r, g, b, w);
+  leds[91] = CRGBW(r, g, b, w);
+  leds[92] = CRGBW(r, g, b, w);
+  leds[93] = CRGBW(r, g, b, w);
 }
 void min10()
 {
-  ledsRGB[62] = CRGBW(r, g, b, w);
-  ledsRGB[63] = CRGBW(r, g, b, w);
-  ledsRGB[65] = CRGBW(r, g, b, w);
-  ledsRGB[70] = CRGBW(r, g, b, w);
-  ledsRGB[72] = CRGBW(r, g, b, w);
-  ledsRGB[73] = CRGBW(r, g, b, w);
-  ledsRGB[81] = CRGBW(r, g, b, w);
-  ledsRGB[85] = CRGBW(r, g, b, w);
-  ledsRGB[87] = CRGBW(r, g, b, w);
-  ledsRGB[88] = CRGBW(r, g, b, w);
-  ledsRGB[90] = CRGBW(r, g, b, w);
-  ledsRGB[91] = CRGBW(r, g, b, w);
-  ledsRGB[93] = CRGBW(r, g, b, w);
+  leds[62] = CRGBW(r, g, b, w);
+  leds[63] = CRGBW(r, g, b, w);
+  leds[65] = CRGBW(r, g, b, w);
+  leds[70] = CRGBW(r, g, b, w);
+  leds[72] = CRGBW(r, g, b, w);
+  leds[73] = CRGBW(r, g, b, w);
+  leds[81] = CRGBW(r, g, b, w);
+  leds[85] = CRGBW(r, g, b, w);
+  leds[87] = CRGBW(r, g, b, w);
+  leds[88] = CRGBW(r, g, b, w);
+  leds[90] = CRGBW(r, g, b, w);
+  leds[91] = CRGBW(r, g, b, w);
+  leds[93] = CRGBW(r, g, b, w);
 }
 void min11()
 {
-  ledsRGB[63] = CRGBW(r, g, b, w);
-  ledsRGB[65] = CRGBW(r, g, b, w);
-  ledsRGB[70] = CRGBW(r, g, b, w);
-  ledsRGB[72] = CRGBW(r, g, b, w);
-  ledsRGB[79] = CRGBW(r, g, b, w);
-  ledsRGB[81] = CRGBW(r, g, b, w);
-  ledsRGB[85] = CRGBW(r, g, b, w);
-  ledsRGB[87] = CRGBW(r, g, b, w);
-  ledsRGB[91] = CRGBW(r, g, b, w);
-  ledsRGB[93] = CRGBW(r, g, b, w);
+  leds[63] = CRGBW(r, g, b, w);
+  leds[65] = CRGBW(r, g, b, w);
+  leds[70] = CRGBW(r, g, b, w);
+  leds[72] = CRGBW(r, g, b, w);
+  leds[79] = CRGBW(r, g, b, w);
+  leds[81] = CRGBW(r, g, b, w);
+  leds[85] = CRGBW(r, g, b, w);
+  leds[87] = CRGBW(r, g, b, w);
+  leds[91] = CRGBW(r, g, b, w);
+  leds[93] = CRGBW(r, g, b, w);
 }
 void min12()
 {
-  ledsRGB[62] = CRGBW(r, g, b, w);
-  ledsRGB[63] = CRGBW(r, g, b, w);
-  ledsRGB[65] = CRGBW(r, g, b, w);
-  ledsRGB[70] = CRGBW(r, g, b, w);
-  ledsRGB[73] = CRGBW(r, g, b, w);
-  ledsRGB[78] = CRGBW(r, g, b, w);
-  ledsRGB[79] = CRGBW(r, g, b, w);
-  ledsRGB[81] = CRGBW(r, g, b, w);
-  ledsRGB[85] = CRGBW(r, g, b, w);
-  ledsRGB[87] = CRGBW(r, g, b, w);
-  ledsRGB[90] = CRGBW(r, g, b, w);
-  ledsRGB[91] = CRGBW(r, g, b, w);
-  ledsRGB[93] = CRGBW(r, g, b, w);
+  leds[62] = CRGBW(r, g, b, w);
+  leds[63] = CRGBW(r, g, b, w);
+  leds[65] = CRGBW(r, g, b, w);
+  leds[70] = CRGBW(r, g, b, w);
+  leds[73] = CRGBW(r, g, b, w);
+  leds[78] = CRGBW(r, g, b, w);
+  leds[79] = CRGBW(r, g, b, w);
+  leds[81] = CRGBW(r, g, b, w);
+  leds[85] = CRGBW(r, g, b, w);
+  leds[87] = CRGBW(r, g, b, w);
+  leds[90] = CRGBW(r, g, b, w);
+  leds[91] = CRGBW(r, g, b, w);
+  leds[93] = CRGBW(r, g, b, w);
 }
 void min13()
 {
-  ledsRGB[62] = CRGBW(r, g, b, w);
-  ledsRGB[63] = CRGBW(r, g, b, w);
-  ledsRGB[65] = CRGBW(r, g, b, w);
-  ledsRGB[70] = CRGBW(r, g, b, w);
-  ledsRGB[73] = CRGBW(r, g, b, w);
-  ledsRGB[78] = CRGBW(r, g, b, w);
-  ledsRGB[79] = CRGBW(r, g, b, w);
-  ledsRGB[81] = CRGBW(r, g, b, w);
-  ledsRGB[85] = CRGBW(r, g, b, w);
-  ledsRGB[88] = CRGBW(r, g, b, w);
-  ledsRGB[90] = CRGBW(r, g, b, w);
-  ledsRGB[91] = CRGBW(r, g, b, w);
-  ledsRGB[93] = CRGBW(r, g, b, w);
+  leds[62] = CRGBW(r, g, b, w);
+  leds[63] = CRGBW(r, g, b, w);
+  leds[65] = CRGBW(r, g, b, w);
+  leds[70] = CRGBW(r, g, b, w);
+  leds[73] = CRGBW(r, g, b, w);
+  leds[78] = CRGBW(r, g, b, w);
+  leds[79] = CRGBW(r, g, b, w);
+  leds[81] = CRGBW(r, g, b, w);
+  leds[85] = CRGBW(r, g, b, w);
+  leds[88] = CRGBW(r, g, b, w);
+  leds[90] = CRGBW(r, g, b, w);
+  leds[91] = CRGBW(r, g, b, w);
+  leds[93] = CRGBW(r, g, b, w);
 }
 void min14()
 {
-  ledsRGB[65] = CRGBW(r, g, b, w);
-  ledsRGB[70] = CRGBW(r, g, b, w);
-  ledsRGB[72] = CRGBW(r, g, b, w);
-  ledsRGB[73] = CRGBW(r, g, b, w);
-  ledsRGB[78] = CRGBW(r, g, b, w);
-  ledsRGB[79] = CRGBW(r, g, b, w);
-  ledsRGB[81] = CRGBW(r, g, b, w);
-  ledsRGB[85] = CRGBW(r, g, b, w);
-  ledsRGB[88] = CRGBW(r, g, b, w);
-  ledsRGB[90] = CRGBW(r, g, b, w);
-  ledsRGB[93] = CRGBW(r, g, b, w);
+  leds[65] = CRGBW(r, g, b, w);
+  leds[70] = CRGBW(r, g, b, w);
+  leds[72] = CRGBW(r, g, b, w);
+  leds[73] = CRGBW(r, g, b, w);
+  leds[78] = CRGBW(r, g, b, w);
+  leds[79] = CRGBW(r, g, b, w);
+  leds[81] = CRGBW(r, g, b, w);
+  leds[85] = CRGBW(r, g, b, w);
+  leds[88] = CRGBW(r, g, b, w);
+  leds[90] = CRGBW(r, g, b, w);
+  leds[93] = CRGBW(r, g, b, w);
 }
 void min15()
 {
-  ledsRGB[62] = CRGBW(r, g, b, w);
-  ledsRGB[63] = CRGBW(r, g, b, w);
-  ledsRGB[65] = CRGBW(r, g, b, w);
-  ledsRGB[70] = CRGBW(r, g, b, w);
-  ledsRGB[72] = CRGBW(r, g, b, w);
-  ledsRGB[78] = CRGBW(r, g, b, w);
-  ledsRGB[79] = CRGBW(r, g, b, w);
-  ledsRGB[81] = CRGBW(r, g, b, w);
-  ledsRGB[85] = CRGBW(r, g, b, w);
-  ledsRGB[88] = CRGBW(r, g, b, w);
-  ledsRGB[90] = CRGBW(r, g, b, w);
-  ledsRGB[91] = CRGBW(r, g, b, w);
-  ledsRGB[93] = CRGBW(r, g, b, w);
+  leds[62] = CRGBW(r, g, b, w);
+  leds[63] = CRGBW(r, g, b, w);
+  leds[65] = CRGBW(r, g, b, w);
+  leds[70] = CRGBW(r, g, b, w);
+  leds[72] = CRGBW(r, g, b, w);
+  leds[78] = CRGBW(r, g, b, w);
+  leds[79] = CRGBW(r, g, b, w);
+  leds[81] = CRGBW(r, g, b, w);
+  leds[85] = CRGBW(r, g, b, w);
+  leds[88] = CRGBW(r, g, b, w);
+  leds[90] = CRGBW(r, g, b, w);
+  leds[91] = CRGBW(r, g, b, w);
+  leds[93] = CRGBW(r, g, b, w);
 }
 void min16()
 {
-  ledsRGB[62] = CRGBW(r, g, b, w);
-  ledsRGB[63] = CRGBW(r, g, b, w);
-  ledsRGB[65] = CRGBW(r, g, b, w);
-  ledsRGB[70] = CRGBW(r, g, b, w);
-  ledsRGB[72] = CRGBW(r, g, b, w);
-  ledsRGB[78] = CRGBW(r, g, b, w);
-  ledsRGB[79] = CRGBW(r, g, b, w);
-  ledsRGB[81] = CRGBW(r, g, b, w);
-  ledsRGB[85] = CRGBW(r, g, b, w);
-  ledsRGB[87] = CRGBW(r, g, b, w);
-  ledsRGB[88] = CRGBW(r, g, b, w);
-  ledsRGB[90] = CRGBW(r, g, b, w);
-  ledsRGB[91] = CRGBW(r, g, b, w);
-  ledsRGB[93] = CRGBW(r, g, b, w);
+  leds[62] = CRGBW(r, g, b, w);
+  leds[63] = CRGBW(r, g, b, w);
+  leds[65] = CRGBW(r, g, b, w);
+  leds[70] = CRGBW(r, g, b, w);
+  leds[72] = CRGBW(r, g, b, w);
+  leds[78] = CRGBW(r, g, b, w);
+  leds[79] = CRGBW(r, g, b, w);
+  leds[81] = CRGBW(r, g, b, w);
+  leds[85] = CRGBW(r, g, b, w);
+  leds[87] = CRGBW(r, g, b, w);
+  leds[88] = CRGBW(r, g, b, w);
+  leds[90] = CRGBW(r, g, b, w);
+  leds[91] = CRGBW(r, g, b, w);
+  leds[93] = CRGBW(r, g, b, w);
 }
 void min17()
 {
-  ledsRGB[62] = CRGBW(r, g, b, w);
-  ledsRGB[63] = CRGBW(r, g, b, w);
-  ledsRGB[65] = CRGBW(r, g, b, w);
-  ledsRGB[70] = CRGBW(r, g, b, w);
-  ledsRGB[72] = CRGBW(r, g, b, w);
-  ledsRGB[73] = CRGBW(r, g, b, w);
-  ledsRGB[78] = CRGBW(r, g, b, w);
-  ledsRGB[81] = CRGBW(r, g, b, w);
-  ledsRGB[85] = CRGBW(r, g, b, w);
-  ledsRGB[88] = CRGBW(r, g, b, w);
-  ledsRGB[90] = CRGBW(r, g, b, w);
-  ledsRGB[93] = CRGBW(r, g, b, w);
+  leds[62] = CRGBW(r, g, b, w);
+  leds[63] = CRGBW(r, g, b, w);
+  leds[65] = CRGBW(r, g, b, w);
+  leds[70] = CRGBW(r, g, b, w);
+  leds[72] = CRGBW(r, g, b, w);
+  leds[73] = CRGBW(r, g, b, w);
+  leds[78] = CRGBW(r, g, b, w);
+  leds[81] = CRGBW(r, g, b, w);
+  leds[85] = CRGBW(r, g, b, w);
+  leds[88] = CRGBW(r, g, b, w);
+  leds[90] = CRGBW(r, g, b, w);
+  leds[93] = CRGBW(r, g, b, w);
 }
 void min18()
 {
-  ledsRGB[62] = CRGBW(r, g, b, w);
-  ledsRGB[63] = CRGBW(r, g, b, w);
-  ledsRGB[65] = CRGBW(r, g, b, w);
-  ledsRGB[70] = CRGBW(r, g, b, w);
-  ledsRGB[72] = CRGBW(r, g, b, w);
-  ledsRGB[73] = CRGBW(r, g, b, w);
-  ledsRGB[78] = CRGBW(r, g, b, w);
-  ledsRGB[79] = CRGBW(r, g, b, w);
-  ledsRGB[81] = CRGBW(r, g, b, w);
-  ledsRGB[85] = CRGBW(r, g, b, w);
-  ledsRGB[87] = CRGBW(r, g, b, w);
-  ledsRGB[88] = CRGBW(r, g, b, w);
-  ledsRGB[90] = CRGBW(r, g, b, w);
-  ledsRGB[91] = CRGBW(r, g, b, w);
-  ledsRGB[93] = CRGBW(r, g, b, w);
+  leds[62] = CRGBW(r, g, b, w);
+  leds[63] = CRGBW(r, g, b, w);
+  leds[65] = CRGBW(r, g, b, w);
+  leds[70] = CRGBW(r, g, b, w);
+  leds[72] = CRGBW(r, g, b, w);
+  leds[73] = CRGBW(r, g, b, w);
+  leds[78] = CRGBW(r, g, b, w);
+  leds[79] = CRGBW(r, g, b, w);
+  leds[81] = CRGBW(r, g, b, w);
+  leds[85] = CRGBW(r, g, b, w);
+  leds[87] = CRGBW(r, g, b, w);
+  leds[88] = CRGBW(r, g, b, w);
+  leds[90] = CRGBW(r, g, b, w);
+  leds[91] = CRGBW(r, g, b, w);
+  leds[93] = CRGBW(r, g, b, w);
 }
 void min19()
 {
-  ledsRGB[62] = CRGBW(r, g, b, w);
-  ledsRGB[63] = CRGBW(r, g, b, w);
-  ledsRGB[65] = CRGBW(r, g, b, w);
-  ledsRGB[70] = CRGBW(r, g, b, w);
-  ledsRGB[72] = CRGBW(r, g, b, w);
-  ledsRGB[73] = CRGBW(r, g, b, w);
-  ledsRGB[78] = CRGBW(r, g, b, w);
-  ledsRGB[79] = CRGBW(r, g, b, w);
-  ledsRGB[81] = CRGBW(r, g, b, w);
-  ledsRGB[85] = CRGBW(r, g, b, w);
-  ledsRGB[88] = CRGBW(r, g, b, w);
-  ledsRGB[90] = CRGBW(r, g, b, w);
-  ledsRGB[91] = CRGBW(r, g, b, w);
-  ledsRGB[93] = CRGBW(r, g, b, w);
+  leds[62] = CRGBW(r, g, b, w);
+  leds[63] = CRGBW(r, g, b, w);
+  leds[65] = CRGBW(r, g, b, w);
+  leds[70] = CRGBW(r, g, b, w);
+  leds[72] = CRGBW(r, g, b, w);
+  leds[73] = CRGBW(r, g, b, w);
+  leds[78] = CRGBW(r, g, b, w);
+  leds[79] = CRGBW(r, g, b, w);
+  leds[81] = CRGBW(r, g, b, w);
+  leds[85] = CRGBW(r, g, b, w);
+  leds[88] = CRGBW(r, g, b, w);
+  leds[90] = CRGBW(r, g, b, w);
+  leds[91] = CRGBW(r, g, b, w);
+  leds[93] = CRGBW(r, g, b, w);
 }
 void min20()
 {
-  ledsRGB[62] = CRGBW(r, g, b, w);
-  ledsRGB[63] = CRGBW(r, g, b, w);
-  ledsRGB[64] = CRGBW(r, g, b, w);
-  ledsRGB[65] = CRGBW(r, g, b, w);
-  ledsRGB[71] = CRGBW(r, g, b, w);
-  ledsRGB[72] = CRGBW(r, g, b, w);
-  ledsRGB[73] = CRGBW(r, g, b, w);
-  ledsRGB[80] = CRGBW(r, g, b, w);
-  ledsRGB[81] = CRGBW(r, g, b, w);
-  ledsRGB[85] = CRGBW(r, g, b, w);
-  ledsRGB[87] = CRGBW(r, g, b, w);
-  ledsRGB[88] = CRGBW(r, g, b, w);
-  ledsRGB[90] = CRGBW(r, g, b, w);
-  ledsRGB[91] = CRGBW(r, g, b, w);
-  ledsRGB[92] = CRGBW(r, g, b, w);
-  ledsRGB[93] = CRGBW(r, g, b, w);
+  leds[62] = CRGBW(r, g, b, w);
+  leds[63] = CRGBW(r, g, b, w);
+  leds[64] = CRGBW(r, g, b, w);
+  leds[65] = CRGBW(r, g, b, w);
+  leds[71] = CRGBW(r, g, b, w);
+  leds[72] = CRGBW(r, g, b, w);
+  leds[73] = CRGBW(r, g, b, w);
+  leds[80] = CRGBW(r, g, b, w);
+  leds[81] = CRGBW(r, g, b, w);
+  leds[85] = CRGBW(r, g, b, w);
+  leds[87] = CRGBW(r, g, b, w);
+  leds[88] = CRGBW(r, g, b, w);
+  leds[90] = CRGBW(r, g, b, w);
+  leds[91] = CRGBW(r, g, b, w);
+  leds[92] = CRGBW(r, g, b, w);
+  leds[93] = CRGBW(r, g, b, w);
 }
 void min21()
 {
-  ledsRGB[62] = CRGBW(r, g, b, w);
-  ledsRGB[64] = CRGBW(r, g, b, w);
-  ledsRGB[65] = CRGBW(r, g, b, w);
-  ledsRGB[71] = CRGBW(r, g, b, w);
-  ledsRGB[73] = CRGBW(r, g, b, w);
-  ledsRGB[78] = CRGBW(r, g, b, w);
-  ledsRGB[80] = CRGBW(r, g, b, w);
-  ledsRGB[81] = CRGBW(r, g, b, w);
-  ledsRGB[85] = CRGBW(r, g, b, w);
-  ledsRGB[88] = CRGBW(r, g, b, w);
-  ledsRGB[90] = CRGBW(r, g, b, w);
-  ledsRGB[92] = CRGBW(r, g, b, w);
-  ledsRGB[93] = CRGBW(r, g, b, w);
+  leds[62] = CRGBW(r, g, b, w);
+  leds[64] = CRGBW(r, g, b, w);
+  leds[65] = CRGBW(r, g, b, w);
+  leds[71] = CRGBW(r, g, b, w);
+  leds[73] = CRGBW(r, g, b, w);
+  leds[78] = CRGBW(r, g, b, w);
+  leds[80] = CRGBW(r, g, b, w);
+  leds[81] = CRGBW(r, g, b, w);
+  leds[85] = CRGBW(r, g, b, w);
+  leds[88] = CRGBW(r, g, b, w);
+  leds[90] = CRGBW(r, g, b, w);
+  leds[92] = CRGBW(r, g, b, w);
+  leds[93] = CRGBW(r, g, b, w);
 }
 void min22()
 {
-  ledsRGB[62] = CRGBW(r, g, b, w);
-  ledsRGB[63] = CRGBW(r, g, b, w);
-  ledsRGB[64] = CRGBW(r, g, b, w);
-  ledsRGB[65] = CRGBW(r, g, b, w);
-  ledsRGB[71] = CRGBW(r, g, b, w);
-  ledsRGB[73] = CRGBW(r, g, b, w);
-  ledsRGB[78] = CRGBW(r, g, b, w);
-  ledsRGB[79] = CRGBW(r, g, b, w);
-  ledsRGB[80] = CRGBW(r, g, b, w);
-  ledsRGB[81] = CRGBW(r, g, b, w);
-  ledsRGB[85] = CRGBW(r, g, b, w);
-  ledsRGB[87] = CRGBW(r, g, b, w);
-  ledsRGB[90] = CRGBW(r, g, b, w);
-  ledsRGB[91] = CRGBW(r, g, b, w);
-  ledsRGB[92] = CRGBW(r, g, b, w);
-  ledsRGB[93] = CRGBW(r, g, b, w);
+  leds[62] = CRGBW(r, g, b, w);
+  leds[63] = CRGBW(r, g, b, w);
+  leds[64] = CRGBW(r, g, b, w);
+  leds[65] = CRGBW(r, g, b, w);
+  leds[71] = CRGBW(r, g, b, w);
+  leds[73] = CRGBW(r, g, b, w);
+  leds[78] = CRGBW(r, g, b, w);
+  leds[79] = CRGBW(r, g, b, w);
+  leds[80] = CRGBW(r, g, b, w);
+  leds[81] = CRGBW(r, g, b, w);
+  leds[85] = CRGBW(r, g, b, w);
+  leds[87] = CRGBW(r, g, b, w);
+  leds[90] = CRGBW(r, g, b, w);
+  leds[91] = CRGBW(r, g, b, w);
+  leds[92] = CRGBW(r, g, b, w);
+  leds[93] = CRGBW(r, g, b, w);
 }
 void min23()
 {
-  ledsRGB[62] = CRGBW(r, g, b, w);
-  ledsRGB[63] = CRGBW(r, g, b, w);
-  ledsRGB[64] = CRGBW(r, g, b, w);
-  ledsRGB[65] = CRGBW(r, g, b, w);
-  ledsRGB[71] = CRGBW(r, g, b, w);
-  ledsRGB[73] = CRGBW(r, g, b, w);
-  ledsRGB[78] = CRGBW(r, g, b, w);
-  ledsRGB[79] = CRGBW(r, g, b, w);
-  ledsRGB[80] = CRGBW(r, g, b, w);
-  ledsRGB[81] = CRGBW(r, g, b, w);
-  ledsRGB[85] = CRGBW(r, g, b, w);
-  ledsRGB[88] = CRGBW(r, g, b, w);
-  ledsRGB[90] = CRGBW(r, g, b, w);
-  ledsRGB[91] = CRGBW(r, g, b, w);
-  ledsRGB[92] = CRGBW(r, g, b, w);
-  ledsRGB[93] = CRGBW(r, g, b, w);
+  leds[62] = CRGBW(r, g, b, w);
+  leds[63] = CRGBW(r, g, b, w);
+  leds[64] = CRGBW(r, g, b, w);
+  leds[65] = CRGBW(r, g, b, w);
+  leds[71] = CRGBW(r, g, b, w);
+  leds[73] = CRGBW(r, g, b, w);
+  leds[78] = CRGBW(r, g, b, w);
+  leds[79] = CRGBW(r, g, b, w);
+  leds[80] = CRGBW(r, g, b, w);
+  leds[81] = CRGBW(r, g, b, w);
+  leds[85] = CRGBW(r, g, b, w);
+  leds[88] = CRGBW(r, g, b, w);
+  leds[90] = CRGBW(r, g, b, w);
+  leds[91] = CRGBW(r, g, b, w);
+  leds[92] = CRGBW(r, g, b, w);
+  leds[93] = CRGBW(r, g, b, w);
 }
 void min24()
 {
-  ledsRGB[64] = CRGBW(r, g, b, w);
-  ledsRGB[65] = CRGBW(r, g, b, w);
-  ledsRGB[71] = CRGBW(r, g, b, w);
-  ledsRGB[72] = CRGBW(r, g, b, w);
-  ledsRGB[73] = CRGBW(r, g, b, w);
-  ledsRGB[78] = CRGBW(r, g, b, w);
-  ledsRGB[79] = CRGBW(r, g, b, w);
-  ledsRGB[80] = CRGBW(r, g, b, w);
-  ledsRGB[81] = CRGBW(r, g, b, w);
-  ledsRGB[85] = CRGBW(r, g, b, w);
-  ledsRGB[88] = CRGBW(r, g, b, w);
-  ledsRGB[90] = CRGBW(r, g, b, w);
-  ledsRGB[92] = CRGBW(r, g, b, w);
-  ledsRGB[93] = CRGBW(r, g, b, w);
+  leds[64] = CRGBW(r, g, b, w);
+  leds[65] = CRGBW(r, g, b, w);
+  leds[71] = CRGBW(r, g, b, w);
+  leds[72] = CRGBW(r, g, b, w);
+  leds[73] = CRGBW(r, g, b, w);
+  leds[78] = CRGBW(r, g, b, w);
+  leds[79] = CRGBW(r, g, b, w);
+  leds[80] = CRGBW(r, g, b, w);
+  leds[81] = CRGBW(r, g, b, w);
+  leds[85] = CRGBW(r, g, b, w);
+  leds[88] = CRGBW(r, g, b, w);
+  leds[90] = CRGBW(r, g, b, w);
+  leds[92] = CRGBW(r, g, b, w);
+  leds[93] = CRGBW(r, g, b, w);
 }
 void min25()
 {
-  ledsRGB[62] = CRGBW(r, g, b, w);
-  ledsRGB[63] = CRGBW(r, g, b, w);
-  ledsRGB[64] = CRGBW(r, g, b, w);
-  ledsRGB[65] = CRGBW(r, g, b, w);
-  ledsRGB[71] = CRGBW(r, g, b, w);
-  ledsRGB[72] = CRGBW(r, g, b, w);
-  ledsRGB[78] = CRGBW(r, g, b, w);
-  ledsRGB[79] = CRGBW(r, g, b, w);
-  ledsRGB[80] = CRGBW(r, g, b, w);
-  ledsRGB[81] = CRGBW(r, g, b, w);
-  ledsRGB[85] = CRGBW(r, g, b, w);
-  ledsRGB[88] = CRGBW(r, g, b, w);
-  ledsRGB[90] = CRGBW(r, g, b, w);
-  ledsRGB[91] = CRGBW(r, g, b, w);
-  ledsRGB[92] = CRGBW(r, g, b, w);
-  ledsRGB[93] = CRGBW(r, g, b, w);
+  leds[62] = CRGBW(r, g, b, w);
+  leds[63] = CRGBW(r, g, b, w);
+  leds[64] = CRGBW(r, g, b, w);
+  leds[65] = CRGBW(r, g, b, w);
+  leds[71] = CRGBW(r, g, b, w);
+  leds[72] = CRGBW(r, g, b, w);
+  leds[78] = CRGBW(r, g, b, w);
+  leds[79] = CRGBW(r, g, b, w);
+  leds[80] = CRGBW(r, g, b, w);
+  leds[81] = CRGBW(r, g, b, w);
+  leds[85] = CRGBW(r, g, b, w);
+  leds[88] = CRGBW(r, g, b, w);
+  leds[90] = CRGBW(r, g, b, w);
+  leds[91] = CRGBW(r, g, b, w);
+  leds[92] = CRGBW(r, g, b, w);
+  leds[93] = CRGBW(r, g, b, w);
 }
 void min26()
 {
-  ledsRGB[62] = CRGBW(r, g, b, w);
-  ledsRGB[63] = CRGBW(r, g, b, w);
-  ledsRGB[64] = CRGBW(r, g, b, w);
-  ledsRGB[65] = CRGBW(r, g, b, w);
-  ledsRGB[71] = CRGBW(r, g, b, w);
-  ledsRGB[72] = CRGBW(r, g, b, w);
-  ledsRGB[78] = CRGBW(r, g, b, w);
-  ledsRGB[79] = CRGBW(r, g, b, w);
-  ledsRGB[80] = CRGBW(r, g, b, w);
-  ledsRGB[81] = CRGBW(r, g, b, w);
-  ledsRGB[85] = CRGBW(r, g, b, w);
-  ledsRGB[87] = CRGBW(r, g, b, w);
-  ledsRGB[88] = CRGBW(r, g, b, w);
-  ledsRGB[90] = CRGBW(r, g, b, w);
-  ledsRGB[91] = CRGBW(r, g, b, w);
-  ledsRGB[92] = CRGBW(r, g, b, w);
-  ledsRGB[93] = CRGBW(r, g, b, w);
+  leds[62] = CRGBW(r, g, b, w);
+  leds[63] = CRGBW(r, g, b, w);
+  leds[64] = CRGBW(r, g, b, w);
+  leds[65] = CRGBW(r, g, b, w);
+  leds[71] = CRGBW(r, g, b, w);
+  leds[72] = CRGBW(r, g, b, w);
+  leds[78] = CRGBW(r, g, b, w);
+  leds[79] = CRGBW(r, g, b, w);
+  leds[80] = CRGBW(r, g, b, w);
+  leds[81] = CRGBW(r, g, b, w);
+  leds[85] = CRGBW(r, g, b, w);
+  leds[87] = CRGBW(r, g, b, w);
+  leds[88] = CRGBW(r, g, b, w);
+  leds[90] = CRGBW(r, g, b, w);
+  leds[91] = CRGBW(r, g, b, w);
+  leds[92] = CRGBW(r, g, b, w);
+  leds[93] = CRGBW(r, g, b, w);
 }
 void min27()
 {
-  ledsRGB[62] = CRGBW(r, g, b, w);
-  ledsRGB[63] = CRGBW(r, g, b, w);
-  ledsRGB[64] = CRGBW(r, g, b, w);
-  ledsRGB[65] = CRGBW(r, g, b, w);
-  ledsRGB[71] = CRGBW(r, g, b, w);
-  ledsRGB[72] = CRGBW(r, g, b, w);
-  ledsRGB[73] = CRGBW(r, g, b, w);
-  ledsRGB[78] = CRGBW(r, g, b, w);
-  ledsRGB[80] = CRGBW(r, g, b, w);
-  ledsRGB[81] = CRGBW(r, g, b, w);
-  ledsRGB[85] = CRGBW(r, g, b, w);
-  ledsRGB[88] = CRGBW(r, g, b, w);
-  ledsRGB[90] = CRGBW(r, g, b, w);
-  ledsRGB[92] = CRGBW(r, g, b, w);
-  ledsRGB[93] = CRGBW(r, g, b, w);
+  leds[62] = CRGBW(r, g, b, w);
+  leds[63] = CRGBW(r, g, b, w);
+  leds[64] = CRGBW(r, g, b, w);
+  leds[65] = CRGBW(r, g, b, w);
+  leds[71] = CRGBW(r, g, b, w);
+  leds[72] = CRGBW(r, g, b, w);
+  leds[73] = CRGBW(r, g, b, w);
+  leds[78] = CRGBW(r, g, b, w);
+  leds[80] = CRGBW(r, g, b, w);
+  leds[81] = CRGBW(r, g, b, w);
+  leds[85] = CRGBW(r, g, b, w);
+  leds[88] = CRGBW(r, g, b, w);
+  leds[90] = CRGBW(r, g, b, w);
+  leds[92] = CRGBW(r, g, b, w);
+  leds[93] = CRGBW(r, g, b, w);
 }
 void min28()
 {
-  ledsRGB[62] = CRGBW(r, g, b, w);
-  ledsRGB[63] = CRGBW(r, g, b, w);
-  ledsRGB[64] = CRGBW(r, g, b, w);
-  ledsRGB[65] = CRGBW(r, g, b, w);
-  ledsRGB[71] = CRGBW(r, g, b, w);
-  ledsRGB[72] = CRGBW(r, g, b, w);
-  ledsRGB[73] = CRGBW(r, g, b, w);
-  ledsRGB[78] = CRGBW(r, g, b, w);
-  ledsRGB[79] = CRGBW(r, g, b, w);
-  ledsRGB[80] = CRGBW(r, g, b, w);
-  ledsRGB[81] = CRGBW(r, g, b, w);
-  ledsRGB[85] = CRGBW(r, g, b, w);
-  ledsRGB[87] = CRGBW(r, g, b, w);
-  ledsRGB[88] = CRGBW(r, g, b, w);
-  ledsRGB[90] = CRGBW(r, g, b, w);
-  ledsRGB[91] = CRGBW(r, g, b, w);
-  ledsRGB[92] = CRGBW(r, g, b, w);
-  ledsRGB[93] = CRGBW(r, g, b, w);
+  leds[62] = CRGBW(r, g, b, w);
+  leds[63] = CRGBW(r, g, b, w);
+  leds[64] = CRGBW(r, g, b, w);
+  leds[65] = CRGBW(r, g, b, w);
+  leds[71] = CRGBW(r, g, b, w);
+  leds[72] = CRGBW(r, g, b, w);
+  leds[73] = CRGBW(r, g, b, w);
+  leds[78] = CRGBW(r, g, b, w);
+  leds[79] = CRGBW(r, g, b, w);
+  leds[80] = CRGBW(r, g, b, w);
+  leds[81] = CRGBW(r, g, b, w);
+  leds[85] = CRGBW(r, g, b, w);
+  leds[87] = CRGBW(r, g, b, w);
+  leds[88] = CRGBW(r, g, b, w);
+  leds[90] = CRGBW(r, g, b, w);
+  leds[91] = CRGBW(r, g, b, w);
+  leds[92] = CRGBW(r, g, b, w);
+  leds[93] = CRGBW(r, g, b, w);
 }
 void min29()
 {
-  ledsRGB[62] = CRGBW(r, g, b, w);
-  ledsRGB[63] = CRGBW(r, g, b, w);
-  ledsRGB[64] = CRGBW(r, g, b, w);
-  ledsRGB[65] = CRGBW(r, g, b, w);
-  ledsRGB[71] = CRGBW(r, g, b, w);
-  ledsRGB[72] = CRGBW(r, g, b, w);
-  ledsRGB[73] = CRGBW(r, g, b, w);
-  ledsRGB[78] = CRGBW(r, g, b, w);
-  ledsRGB[79] = CRGBW(r, g, b, w);
-  ledsRGB[80] = CRGBW(r, g, b, w);
-  ledsRGB[81] = CRGBW(r, g, b, w);
-  ledsRGB[85] = CRGBW(r, g, b, w);
-  ledsRGB[88] = CRGBW(r, g, b, w);
-  ledsRGB[90] = CRGBW(r, g, b, w);
-  ledsRGB[91] = CRGBW(r, g, b, w);
-  ledsRGB[92] = CRGBW(r, g, b, w);
-  ledsRGB[93] = CRGBW(r, g, b, w);
+  leds[62] = CRGBW(r, g, b, w);
+  leds[63] = CRGBW(r, g, b, w);
+  leds[64] = CRGBW(r, g, b, w);
+  leds[65] = CRGBW(r, g, b, w);
+  leds[71] = CRGBW(r, g, b, w);
+  leds[72] = CRGBW(r, g, b, w);
+  leds[73] = CRGBW(r, g, b, w);
+  leds[78] = CRGBW(r, g, b, w);
+  leds[79] = CRGBW(r, g, b, w);
+  leds[80] = CRGBW(r, g, b, w);
+  leds[81] = CRGBW(r, g, b, w);
+  leds[85] = CRGBW(r, g, b, w);
+  leds[88] = CRGBW(r, g, b, w);
+  leds[90] = CRGBW(r, g, b, w);
+  leds[91] = CRGBW(r, g, b, w);
+  leds[92] = CRGBW(r, g, b, w);
+  leds[93] = CRGBW(r, g, b, w);
 }
 void min30()
 {
-  ledsRGB[62] = CRGBW(r, g, b, w);
-  ledsRGB[63] = CRGBW(r, g, b, w);
-  ledsRGB[64] = CRGBW(r, g, b, w);
-  ledsRGB[65] = CRGBW(r, g, b, w);
-  ledsRGB[71] = CRGBW(r, g, b, w);
-  ledsRGB[72] = CRGBW(r, g, b, w);
-  ledsRGB[73] = CRGBW(r, g, b, w);
-  ledsRGB[80] = CRGBW(r, g, b, w);
-  ledsRGB[81] = CRGBW(r, g, b, w);
-  ledsRGB[86] = CRGBW(r, g, b, w);
-  ledsRGB[87] = CRGBW(r, g, b, w);
-  ledsRGB[88] = CRGBW(r, g, b, w);
-  ledsRGB[90] = CRGBW(r, g, b, w);
-  ledsRGB[91] = CRGBW(r, g, b, w);
-  ledsRGB[92] = CRGBW(r, g, b, w);
-  ledsRGB[93] = CRGBW(r, g, b, w);
+  leds[62] = CRGBW(r, g, b, w);
+  leds[63] = CRGBW(r, g, b, w);
+  leds[64] = CRGBW(r, g, b, w);
+  leds[65] = CRGBW(r, g, b, w);
+  leds[71] = CRGBW(r, g, b, w);
+  leds[72] = CRGBW(r, g, b, w);
+  leds[73] = CRGBW(r, g, b, w);
+  leds[80] = CRGBW(r, g, b, w);
+  leds[81] = CRGBW(r, g, b, w);
+  leds[86] = CRGBW(r, g, b, w);
+  leds[87] = CRGBW(r, g, b, w);
+  leds[88] = CRGBW(r, g, b, w);
+  leds[90] = CRGBW(r, g, b, w);
+  leds[91] = CRGBW(r, g, b, w);
+  leds[92] = CRGBW(r, g, b, w);
+  leds[93] = CRGBW(r, g, b, w);
 }
 void min31()
 {
-  ledsRGB[62] = CRGBW(r, g, b, w);
-  ledsRGB[64] = CRGBW(r, g, b, w);
-  ledsRGB[65] = CRGBW(r, g, b, w);
-  ledsRGB[71] = CRGBW(r, g, b, w);
-  ledsRGB[73] = CRGBW(r, g, b, w);
-  ledsRGB[78] = CRGBW(r, g, b, w);
-  ledsRGB[80] = CRGBW(r, g, b, w);
-  ledsRGB[81] = CRGBW(r, g, b, w);
-  ledsRGB[86] = CRGBW(r, g, b, w);
-  ledsRGB[88] = CRGBW(r, g, b, w);
-  ledsRGB[90] = CRGBW(r, g, b, w);
-  ledsRGB[92] = CRGBW(r, g, b, w);
-  ledsRGB[93] = CRGBW(r, g, b, w);
+  leds[62] = CRGBW(r, g, b, w);
+  leds[64] = CRGBW(r, g, b, w);
+  leds[65] = CRGBW(r, g, b, w);
+  leds[71] = CRGBW(r, g, b, w);
+  leds[73] = CRGBW(r, g, b, w);
+  leds[78] = CRGBW(r, g, b, w);
+  leds[80] = CRGBW(r, g, b, w);
+  leds[81] = CRGBW(r, g, b, w);
+  leds[86] = CRGBW(r, g, b, w);
+  leds[88] = CRGBW(r, g, b, w);
+  leds[90] = CRGBW(r, g, b, w);
+  leds[92] = CRGBW(r, g, b, w);
+  leds[93] = CRGBW(r, g, b, w);
 }
 void min32()
 {
-  ledsRGB[62] = CRGBW(r, g, b, w);
-  ledsRGB[63] = CRGBW(r, g, b, w);
-  ledsRGB[64] = CRGBW(r, g, b, w);
-  ledsRGB[65] = CRGBW(r, g, b, w);
-  ledsRGB[71] = CRGBW(r, g, b, w);
-  ledsRGB[73] = CRGBW(r, g, b, w);
-  ledsRGB[78] = CRGBW(r, g, b, w);
-  ledsRGB[79] = CRGBW(r, g, b, w);
-  ledsRGB[80] = CRGBW(r, g, b, w);
-  ledsRGB[81] = CRGBW(r, g, b, w);
-  ledsRGB[86] = CRGBW(r, g, b, w);
-  ledsRGB[87] = CRGBW(r, g, b, w);
-  ledsRGB[90] = CRGBW(r, g, b, w);
-  ledsRGB[91] = CRGBW(r, g, b, w);
-  ledsRGB[92] = CRGBW(r, g, b, w);
-  ledsRGB[93] = CRGBW(r, g, b, w);
+  leds[62] = CRGBW(r, g, b, w);
+  leds[63] = CRGBW(r, g, b, w);
+  leds[64] = CRGBW(r, g, b, w);
+  leds[65] = CRGBW(r, g, b, w);
+  leds[71] = CRGBW(r, g, b, w);
+  leds[73] = CRGBW(r, g, b, w);
+  leds[78] = CRGBW(r, g, b, w);
+  leds[79] = CRGBW(r, g, b, w);
+  leds[80] = CRGBW(r, g, b, w);
+  leds[81] = CRGBW(r, g, b, w);
+  leds[86] = CRGBW(r, g, b, w);
+  leds[87] = CRGBW(r, g, b, w);
+  leds[90] = CRGBW(r, g, b, w);
+  leds[91] = CRGBW(r, g, b, w);
+  leds[92] = CRGBW(r, g, b, w);
+  leds[93] = CRGBW(r, g, b, w);
 }
 void min33()
 {
-  ledsRGB[62] = CRGBW(r, g, b, w);
-  ledsRGB[63] = CRGBW(r, g, b, w);
-  ledsRGB[64] = CRGBW(r, g, b, w);
-  ledsRGB[65] = CRGBW(r, g, b, w);
-  ledsRGB[71] = CRGBW(r, g, b, w);
-  ledsRGB[73] = CRGBW(r, g, b, w);
-  ledsRGB[78] = CRGBW(r, g, b, w);
-  ledsRGB[79] = CRGBW(r, g, b, w);
-  ledsRGB[80] = CRGBW(r, g, b, w);
-  ledsRGB[81] = CRGBW(r, g, b, w);
-  ledsRGB[86] = CRGBW(r, g, b, w);
-  ledsRGB[88] = CRGBW(r, g, b, w);
-  ledsRGB[90] = CRGBW(r, g, b, w);
-  ledsRGB[91] = CRGBW(r, g, b, w);
-  ledsRGB[92] = CRGBW(r, g, b, w);
-  ledsRGB[93] = CRGBW(r, g, b, w);
+  leds[62] = CRGBW(r, g, b, w);
+  leds[63] = CRGBW(r, g, b, w);
+  leds[64] = CRGBW(r, g, b, w);
+  leds[65] = CRGBW(r, g, b, w);
+  leds[71] = CRGBW(r, g, b, w);
+  leds[73] = CRGBW(r, g, b, w);
+  leds[78] = CRGBW(r, g, b, w);
+  leds[79] = CRGBW(r, g, b, w);
+  leds[80] = CRGBW(r, g, b, w);
+  leds[81] = CRGBW(r, g, b, w);
+  leds[86] = CRGBW(r, g, b, w);
+  leds[88] = CRGBW(r, g, b, w);
+  leds[90] = CRGBW(r, g, b, w);
+  leds[91] = CRGBW(r, g, b, w);
+  leds[92] = CRGBW(r, g, b, w);
+  leds[93] = CRGBW(r, g, b, w);
 }
 void min34()
 {
-  ledsRGB[64] = CRGBW(r, g, b, w);
-  ledsRGB[65] = CRGBW(r, g, b, w);
-  ledsRGB[71] = CRGBW(r, g, b, w);
-  ledsRGB[72] = CRGBW(r, g, b, w);
-  ledsRGB[73] = CRGBW(r, g, b, w);
-  ledsRGB[78] = CRGBW(r, g, b, w);
-  ledsRGB[79] = CRGBW(r, g, b, w);
-  ledsRGB[80] = CRGBW(r, g, b, w);
-  ledsRGB[81] = CRGBW(r, g, b, w);
-  ledsRGB[86] = CRGBW(r, g, b, w);
-  ledsRGB[88] = CRGBW(r, g, b, w);
-  ledsRGB[90] = CRGBW(r, g, b, w);
-  ledsRGB[92] = CRGBW(r, g, b, w);
-  ledsRGB[93] = CRGBW(r, g, b, w);
+  leds[64] = CRGBW(r, g, b, w);
+  leds[65] = CRGBW(r, g, b, w);
+  leds[71] = CRGBW(r, g, b, w);
+  leds[72] = CRGBW(r, g, b, w);
+  leds[73] = CRGBW(r, g, b, w);
+  leds[78] = CRGBW(r, g, b, w);
+  leds[79] = CRGBW(r, g, b, w);
+  leds[80] = CRGBW(r, g, b, w);
+  leds[81] = CRGBW(r, g, b, w);
+  leds[86] = CRGBW(r, g, b, w);
+  leds[88] = CRGBW(r, g, b, w);
+  leds[90] = CRGBW(r, g, b, w);
+  leds[92] = CRGBW(r, g, b, w);
+  leds[93] = CRGBW(r, g, b, w);
 }
 void min35()
 {
-  ledsRGB[62] = CRGBW(r, g, b, w);
-  ledsRGB[63] = CRGBW(r, g, b, w);
-  ledsRGB[64] = CRGBW(r, g, b, w);
-  ledsRGB[65] = CRGBW(r, g, b, w);
-  ledsRGB[71] = CRGBW(r, g, b, w);
-  ledsRGB[72] = CRGBW(r, g, b, w);
-  ledsRGB[78] = CRGBW(r, g, b, w);
-  ledsRGB[79] = CRGBW(r, g, b, w);
-  ledsRGB[80] = CRGBW(r, g, b, w);
-  ledsRGB[81] = CRGBW(r, g, b, w);
-  ledsRGB[86] = CRGBW(r, g, b, w);
-  ledsRGB[88] = CRGBW(r, g, b, w);
-  ledsRGB[90] = CRGBW(r, g, b, w);
-  ledsRGB[91] = CRGBW(r, g, b, w);
-  ledsRGB[92] = CRGBW(r, g, b, w);
-  ledsRGB[93] = CRGBW(r, g, b, w);
+  leds[62] = CRGBW(r, g, b, w);
+  leds[63] = CRGBW(r, g, b, w);
+  leds[64] = CRGBW(r, g, b, w);
+  leds[65] = CRGBW(r, g, b, w);
+  leds[71] = CRGBW(r, g, b, w);
+  leds[72] = CRGBW(r, g, b, w);
+  leds[78] = CRGBW(r, g, b, w);
+  leds[79] = CRGBW(r, g, b, w);
+  leds[80] = CRGBW(r, g, b, w);
+  leds[81] = CRGBW(r, g, b, w);
+  leds[86] = CRGBW(r, g, b, w);
+  leds[88] = CRGBW(r, g, b, w);
+  leds[90] = CRGBW(r, g, b, w);
+  leds[91] = CRGBW(r, g, b, w);
+  leds[92] = CRGBW(r, g, b, w);
+  leds[93] = CRGBW(r, g, b, w);
 }
 void min36()
 {
-  ledsRGB[62] = CRGBW(r, g, b, w);
-  ledsRGB[63] = CRGBW(r, g, b, w);
-  ledsRGB[64] = CRGBW(r, g, b, w);
-  ledsRGB[65] = CRGBW(r, g, b, w);
-  ledsRGB[71] = CRGBW(r, g, b, w);
-  ledsRGB[72] = CRGBW(r, g, b, w);
-  ledsRGB[78] = CRGBW(r, g, b, w);
-  ledsRGB[79] = CRGBW(r, g, b, w);
-  ledsRGB[80] = CRGBW(r, g, b, w);
-  ledsRGB[81] = CRGBW(r, g, b, w);
-  ledsRGB[86] = CRGBW(r, g, b, w);
-  ledsRGB[87] = CRGBW(r, g, b, w);
-  ledsRGB[88] = CRGBW(r, g, b, w);
-  ledsRGB[90] = CRGBW(r, g, b, w);
-  ledsRGB[91] = CRGBW(r, g, b, w);
-  ledsRGB[92] = CRGBW(r, g, b, w);
-  ledsRGB[93] = CRGBW(r, g, b, w);
+  leds[62] = CRGBW(r, g, b, w);
+  leds[63] = CRGBW(r, g, b, w);
+  leds[64] = CRGBW(r, g, b, w);
+  leds[65] = CRGBW(r, g, b, w);
+  leds[71] = CRGBW(r, g, b, w);
+  leds[72] = CRGBW(r, g, b, w);
+  leds[78] = CRGBW(r, g, b, w);
+  leds[79] = CRGBW(r, g, b, w);
+  leds[80] = CRGBW(r, g, b, w);
+  leds[81] = CRGBW(r, g, b, w);
+  leds[86] = CRGBW(r, g, b, w);
+  leds[87] = CRGBW(r, g, b, w);
+  leds[88] = CRGBW(r, g, b, w);
+  leds[90] = CRGBW(r, g, b, w);
+  leds[91] = CRGBW(r, g, b, w);
+  leds[92] = CRGBW(r, g, b, w);
+  leds[93] = CRGBW(r, g, b, w);
 }
 void min37()
 {
-  ledsRGB[62] = CRGBW(r, g, b, w);
-  ledsRGB[63] = CRGBW(r, g, b, w);
-  ledsRGB[64] = CRGBW(r, g, b, w);
-  ledsRGB[65] = CRGBW(r, g, b, w);
-  ledsRGB[71] = CRGBW(r, g, b, w);
-  ledsRGB[72] = CRGBW(r, g, b, w);
-  ledsRGB[73] = CRGBW(r, g, b, w);
-  ledsRGB[78] = CRGBW(r, g, b, w);
-  ledsRGB[80] = CRGBW(r, g, b, w);
-  ledsRGB[81] = CRGBW(r, g, b, w);
-  ledsRGB[86] = CRGBW(r, g, b, w);
-  ledsRGB[88] = CRGBW(r, g, b, w);
-  ledsRGB[90] = CRGBW(r, g, b, w);
-  ledsRGB[92] = CRGBW(r, g, b, w);
-  ledsRGB[93] = CRGBW(r, g, b, w);
+  leds[62] = CRGBW(r, g, b, w);
+  leds[63] = CRGBW(r, g, b, w);
+  leds[64] = CRGBW(r, g, b, w);
+  leds[65] = CRGBW(r, g, b, w);
+  leds[71] = CRGBW(r, g, b, w);
+  leds[72] = CRGBW(r, g, b, w);
+  leds[73] = CRGBW(r, g, b, w);
+  leds[78] = CRGBW(r, g, b, w);
+  leds[80] = CRGBW(r, g, b, w);
+  leds[81] = CRGBW(r, g, b, w);
+  leds[86] = CRGBW(r, g, b, w);
+  leds[88] = CRGBW(r, g, b, w);
+  leds[90] = CRGBW(r, g, b, w);
+  leds[92] = CRGBW(r, g, b, w);
+  leds[93] = CRGBW(r, g, b, w);
 }
 void min38()
 {
-  ledsRGB[62] = CRGBW(r, g, b, w);
-  ledsRGB[63] = CRGBW(r, g, b, w);
-  ledsRGB[64] = CRGBW(r, g, b, w);
-  ledsRGB[65] = CRGBW(r, g, b, w);
-  ledsRGB[71] = CRGBW(r, g, b, w);
-  ledsRGB[72] = CRGBW(r, g, b, w);
-  ledsRGB[73] = CRGBW(r, g, b, w);
-  ledsRGB[78] = CRGBW(r, g, b, w);
-  ledsRGB[79] = CRGBW(r, g, b, w);
-  ledsRGB[80] = CRGBW(r, g, b, w);
-  ledsRGB[81] = CRGBW(r, g, b, w);
-  ledsRGB[86] = CRGBW(r, g, b, w);
-  ledsRGB[87] = CRGBW(r, g, b, w);
-  ledsRGB[88] = CRGBW(r, g, b, w);
-  ledsRGB[90] = CRGBW(r, g, b, w);
-  ledsRGB[91] = CRGBW(r, g, b, w);
-  ledsRGB[92] = CRGBW(r, g, b, w);
-  ledsRGB[93] = CRGBW(r, g, b, w);
+  leds[62] = CRGBW(r, g, b, w);
+  leds[63] = CRGBW(r, g, b, w);
+  leds[64] = CRGBW(r, g, b, w);
+  leds[65] = CRGBW(r, g, b, w);
+  leds[71] = CRGBW(r, g, b, w);
+  leds[72] = CRGBW(r, g, b, w);
+  leds[73] = CRGBW(r, g, b, w);
+  leds[78] = CRGBW(r, g, b, w);
+  leds[79] = CRGBW(r, g, b, w);
+  leds[80] = CRGBW(r, g, b, w);
+  leds[81] = CRGBW(r, g, b, w);
+  leds[86] = CRGBW(r, g, b, w);
+  leds[87] = CRGBW(r, g, b, w);
+  leds[88] = CRGBW(r, g, b, w);
+  leds[90] = CRGBW(r, g, b, w);
+  leds[91] = CRGBW(r, g, b, w);
+  leds[92] = CRGBW(r, g, b, w);
+  leds[93] = CRGBW(r, g, b, w);
 }
 void min39()
 {
-  ledsRGB[62] = CRGBW(r, g, b, w);
-  ledsRGB[63] = CRGBW(r, g, b, w);
-  ledsRGB[64] = CRGBW(r, g, b, w);
-  ledsRGB[65] = CRGBW(r, g, b, w);
-  ledsRGB[71] = CRGBW(r, g, b, w);
-  ledsRGB[72] = CRGBW(r, g, b, w);
-  ledsRGB[73] = CRGBW(r, g, b, w);
-  ledsRGB[78] = CRGBW(r, g, b, w);
-  ledsRGB[79] = CRGBW(r, g, b, w);
-  ledsRGB[80] = CRGBW(r, g, b, w);
-  ledsRGB[81] = CRGBW(r, g, b, w);
-  ledsRGB[86] = CRGBW(r, g, b, w);
-  ledsRGB[88] = CRGBW(r, g, b, w);
-  ledsRGB[90] = CRGBW(r, g, b, w);
-  ledsRGB[91] = CRGBW(r, g, b, w);
-  ledsRGB[92] = CRGBW(r, g, b, w);
-  ledsRGB[93] = CRGBW(r, g, b, w);
+  leds[62] = CRGBW(r, g, b, w);
+  leds[63] = CRGBW(r, g, b, w);
+  leds[64] = CRGBW(r, g, b, w);
+  leds[65] = CRGBW(r, g, b, w);
+  leds[71] = CRGBW(r, g, b, w);
+  leds[72] = CRGBW(r, g, b, w);
+  leds[73] = CRGBW(r, g, b, w);
+  leds[78] = CRGBW(r, g, b, w);
+  leds[79] = CRGBW(r, g, b, w);
+  leds[80] = CRGBW(r, g, b, w);
+  leds[81] = CRGBW(r, g, b, w);
+  leds[86] = CRGBW(r, g, b, w);
+  leds[88] = CRGBW(r, g, b, w);
+  leds[90] = CRGBW(r, g, b, w);
+  leds[91] = CRGBW(r, g, b, w);
+  leds[92] = CRGBW(r, g, b, w);
+  leds[93] = CRGBW(r, g, b, w);
 }
 void min40()
 {
-  ledsRGB[62] = CRGBW(r, g, b, w);
-  ledsRGB[63] = CRGBW(r, g, b, w);
-  ledsRGB[70] = CRGBW(r, g, b, w);
-  ledsRGB[71] = CRGBW(r, g, b, w);
-  ledsRGB[72] = CRGBW(r, g, b, w);
-  ledsRGB[73] = CRGBW(r, g, b, w);
-  ledsRGB[80] = CRGBW(r, g, b, w);
-  ledsRGB[81] = CRGBW(r, g, b, w);
-  ledsRGB[86] = CRGBW(r, g, b, w);
-  ledsRGB[87] = CRGBW(r, g, b, w);
-  ledsRGB[88] = CRGBW(r, g, b, w);
-  ledsRGB[90] = CRGBW(r, g, b, w);
-  ledsRGB[91] = CRGBW(r, g, b, w);
-  ledsRGB[92] = CRGBW(r, g, b, w);
+  leds[62] = CRGBW(r, g, b, w);
+  leds[63] = CRGBW(r, g, b, w);
+  leds[70] = CRGBW(r, g, b, w);
+  leds[71] = CRGBW(r, g, b, w);
+  leds[72] = CRGBW(r, g, b, w);
+  leds[73] = CRGBW(r, g, b, w);
+  leds[80] = CRGBW(r, g, b, w);
+  leds[81] = CRGBW(r, g, b, w);
+  leds[86] = CRGBW(r, g, b, w);
+  leds[87] = CRGBW(r, g, b, w);
+  leds[88] = CRGBW(r, g, b, w);
+  leds[90] = CRGBW(r, g, b, w);
+  leds[91] = CRGBW(r, g, b, w);
+  leds[92] = CRGBW(r, g, b, w);
 }
 void min41()
 {
-  ledsRGB[62] = CRGBW(r, g, b, w);
-  ledsRGB[70] = CRGBW(r, g, b, w);
-  ledsRGB[71] = CRGBW(r, g, b, w);
-  ledsRGB[73] = CRGBW(r, g, b, w);
-  ledsRGB[78] = CRGBW(r, g, b, w);
-  ledsRGB[80] = CRGBW(r, g, b, w);
-  ledsRGB[81] = CRGBW(r, g, b, w);
-  ledsRGB[86] = CRGBW(r, g, b, w);
-  ledsRGB[88] = CRGBW(r, g, b, w);
-  ledsRGB[90] = CRGBW(r, g, b, w);
-  ledsRGB[92] = CRGBW(r, g, b, w);
+  leds[62] = CRGBW(r, g, b, w);
+  leds[70] = CRGBW(r, g, b, w);
+  leds[71] = CRGBW(r, g, b, w);
+  leds[73] = CRGBW(r, g, b, w);
+  leds[78] = CRGBW(r, g, b, w);
+  leds[80] = CRGBW(r, g, b, w);
+  leds[81] = CRGBW(r, g, b, w);
+  leds[86] = CRGBW(r, g, b, w);
+  leds[88] = CRGBW(r, g, b, w);
+  leds[90] = CRGBW(r, g, b, w);
+  leds[92] = CRGBW(r, g, b, w);
 }
 void min42()
 {
-  ledsRGB[62] = CRGBW(r, g, b, w);
-  ledsRGB[63] = CRGBW(r, g, b, w);
-  ledsRGB[70] = CRGBW(r, g, b, w);
-  ledsRGB[71] = CRGBW(r, g, b, w);
-  ledsRGB[73] = CRGBW(r, g, b, w);
-  ledsRGB[78] = CRGBW(r, g, b, w);
-  ledsRGB[79] = CRGBW(r, g, b, w);
-  ledsRGB[80] = CRGBW(r, g, b, w);
-  ledsRGB[81] = CRGBW(r, g, b, w);
-  ledsRGB[86] = CRGBW(r, g, b, w);
-  ledsRGB[87] = CRGBW(r, g, b, w);
-  ledsRGB[90] = CRGBW(r, g, b, w);
-  ledsRGB[91] = CRGBW(r, g, b, w);
-  ledsRGB[92] = CRGBW(r, g, b, w);
+  leds[62] = CRGBW(r, g, b, w);
+  leds[63] = CRGBW(r, g, b, w);
+  leds[70] = CRGBW(r, g, b, w);
+  leds[71] = CRGBW(r, g, b, w);
+  leds[73] = CRGBW(r, g, b, w);
+  leds[78] = CRGBW(r, g, b, w);
+  leds[79] = CRGBW(r, g, b, w);
+  leds[80] = CRGBW(r, g, b, w);
+  leds[81] = CRGBW(r, g, b, w);
+  leds[86] = CRGBW(r, g, b, w);
+  leds[87] = CRGBW(r, g, b, w);
+  leds[90] = CRGBW(r, g, b, w);
+  leds[91] = CRGBW(r, g, b, w);
+  leds[92] = CRGBW(r, g, b, w);
 }
 void min43()
 {
-  ledsRGB[62] = CRGBW(r, g, b, w);
-  ledsRGB[63] = CRGBW(r, g, b, w);
-  ledsRGB[70] = CRGBW(r, g, b, w);
-  ledsRGB[71] = CRGBW(r, g, b, w);
-  ledsRGB[73] = CRGBW(r, g, b, w);
-  ledsRGB[78] = CRGBW(r, g, b, w);
-  ledsRGB[79] = CRGBW(r, g, b, w);
-  ledsRGB[80] = CRGBW(r, g, b, w);
-  ledsRGB[81] = CRGBW(r, g, b, w);
-  ledsRGB[86] = CRGBW(r, g, b, w);
-  ledsRGB[88] = CRGBW(r, g, b, w);
-  ledsRGB[90] = CRGBW(r, g, b, w);
-  ledsRGB[91] = CRGBW(r, g, b, w);
-  ledsRGB[92] = CRGBW(r, g, b, w);
+  leds[62] = CRGBW(r, g, b, w);
+  leds[63] = CRGBW(r, g, b, w);
+  leds[70] = CRGBW(r, g, b, w);
+  leds[71] = CRGBW(r, g, b, w);
+  leds[73] = CRGBW(r, g, b, w);
+  leds[78] = CRGBW(r, g, b, w);
+  leds[79] = CRGBW(r, g, b, w);
+  leds[80] = CRGBW(r, g, b, w);
+  leds[81] = CRGBW(r, g, b, w);
+  leds[86] = CRGBW(r, g, b, w);
+  leds[88] = CRGBW(r, g, b, w);
+  leds[90] = CRGBW(r, g, b, w);
+  leds[91] = CRGBW(r, g, b, w);
+  leds[92] = CRGBW(r, g, b, w);
 }
 void min44()
 {
-  ledsRGB[70] = CRGBW(r, g, b, w);
-  ledsRGB[71] = CRGBW(r, g, b, w);
-  ledsRGB[72] = CRGBW(r, g, b, w);
-  ledsRGB[73] = CRGBW(r, g, b, w);
-  ledsRGB[78] = CRGBW(r, g, b, w);
-  ledsRGB[79] = CRGBW(r, g, b, w);
-  ledsRGB[80] = CRGBW(r, g, b, w);
-  ledsRGB[81] = CRGBW(r, g, b, w);
-  ledsRGB[86] = CRGBW(r, g, b, w);
-  ledsRGB[88] = CRGBW(r, g, b, w);
-  ledsRGB[90] = CRGBW(r, g, b, w);
-  ledsRGB[92] = CRGBW(r, g, b, w);
+  leds[70] = CRGBW(r, g, b, w);
+  leds[71] = CRGBW(r, g, b, w);
+  leds[72] = CRGBW(r, g, b, w);
+  leds[73] = CRGBW(r, g, b, w);
+  leds[78] = CRGBW(r, g, b, w);
+  leds[79] = CRGBW(r, g, b, w);
+  leds[80] = CRGBW(r, g, b, w);
+  leds[81] = CRGBW(r, g, b, w);
+  leds[86] = CRGBW(r, g, b, w);
+  leds[88] = CRGBW(r, g, b, w);
+  leds[90] = CRGBW(r, g, b, w);
+  leds[92] = CRGBW(r, g, b, w);
 }
 void min45()
 {
-  ledsRGB[62] = CRGBW(r, g, b, w);
-  ledsRGB[63] = CRGBW(r, g, b, w);
-  ledsRGB[70] = CRGBW(r, g, b, w);
-  ledsRGB[71] = CRGBW(r, g, b, w);
-  ledsRGB[72] = CRGBW(r, g, b, w);
-  ledsRGB[78] = CRGBW(r, g, b, w);
-  ledsRGB[79] = CRGBW(r, g, b, w);
-  ledsRGB[80] = CRGBW(r, g, b, w);
-  ledsRGB[81] = CRGBW(r, g, b, w);
-  ledsRGB[86] = CRGBW(r, g, b, w);
-  ledsRGB[88] = CRGBW(r, g, b, w);
-  ledsRGB[90] = CRGBW(r, g, b, w);
-  ledsRGB[91] = CRGBW(r, g, b, w);
-  ledsRGB[92] = CRGBW(r, g, b, w);
+  leds[62] = CRGBW(r, g, b, w);
+  leds[63] = CRGBW(r, g, b, w);
+  leds[70] = CRGBW(r, g, b, w);
+  leds[71] = CRGBW(r, g, b, w);
+  leds[72] = CRGBW(r, g, b, w);
+  leds[78] = CRGBW(r, g, b, w);
+  leds[79] = CRGBW(r, g, b, w);
+  leds[80] = CRGBW(r, g, b, w);
+  leds[81] = CRGBW(r, g, b, w);
+  leds[86] = CRGBW(r, g, b, w);
+  leds[88] = CRGBW(r, g, b, w);
+  leds[90] = CRGBW(r, g, b, w);
+  leds[91] = CRGBW(r, g, b, w);
+  leds[92] = CRGBW(r, g, b, w);
 }
 void min46()
 {
-  ledsRGB[62] = CRGBW(r, g, b, w);
-  ledsRGB[63] = CRGBW(r, g, b, w);
-  ledsRGB[70] = CRGBW(r, g, b, w);
-  ledsRGB[71] = CRGBW(r, g, b, w);
-  ledsRGB[72] = CRGBW(r, g, b, w);
-  ledsRGB[78] = CRGBW(r, g, b, w);
-  ledsRGB[79] = CRGBW(r, g, b, w);
-  ledsRGB[80] = CRGBW(r, g, b, w);
-  ledsRGB[81] = CRGBW(r, g, b, w);
-  ledsRGB[86] = CRGBW(r, g, b, w);
-  ledsRGB[87] = CRGBW(r, g, b, w);
-  ledsRGB[88] = CRGBW(r, g, b, w);
-  ledsRGB[90] = CRGBW(r, g, b, w);
-  ledsRGB[91] = CRGBW(r, g, b, w);
-  ledsRGB[92] = CRGBW(r, g, b, w);
+  leds[62] = CRGBW(r, g, b, w);
+  leds[63] = CRGBW(r, g, b, w);
+  leds[70] = CRGBW(r, g, b, w);
+  leds[71] = CRGBW(r, g, b, w);
+  leds[72] = CRGBW(r, g, b, w);
+  leds[78] = CRGBW(r, g, b, w);
+  leds[79] = CRGBW(r, g, b, w);
+  leds[80] = CRGBW(r, g, b, w);
+  leds[81] = CRGBW(r, g, b, w);
+  leds[86] = CRGBW(r, g, b, w);
+  leds[87] = CRGBW(r, g, b, w);
+  leds[88] = CRGBW(r, g, b, w);
+  leds[90] = CRGBW(r, g, b, w);
+  leds[91] = CRGBW(r, g, b, w);
+  leds[92] = CRGBW(r, g, b, w);
 }
 void min47()
 {
-  ledsRGB[62] = CRGBW(r, g, b, w);
-  ledsRGB[63] = CRGBW(r, g, b, w);
-  ledsRGB[70] = CRGBW(r, g, b, w);
-  ledsRGB[71] = CRGBW(r, g, b, w);
-  ledsRGB[72] = CRGBW(r, g, b, w);
-  ledsRGB[73] = CRGBW(r, g, b, w);
-  ledsRGB[78] = CRGBW(r, g, b, w);
-  ledsRGB[80] = CRGBW(r, g, b, w);
-  ledsRGB[81] = CRGBW(r, g, b, w);
-  ledsRGB[86] = CRGBW(r, g, b, w);
-  ledsRGB[88] = CRGBW(r, g, b, w);
-  ledsRGB[90] = CRGBW(r, g, b, w);
-  ledsRGB[92] = CRGBW(r, g, b, w);
+  leds[62] = CRGBW(r, g, b, w);
+  leds[63] = CRGBW(r, g, b, w);
+  leds[70] = CRGBW(r, g, b, w);
+  leds[71] = CRGBW(r, g, b, w);
+  leds[72] = CRGBW(r, g, b, w);
+  leds[73] = CRGBW(r, g, b, w);
+  leds[78] = CRGBW(r, g, b, w);
+  leds[80] = CRGBW(r, g, b, w);
+  leds[81] = CRGBW(r, g, b, w);
+  leds[86] = CRGBW(r, g, b, w);
+  leds[88] = CRGBW(r, g, b, w);
+  leds[90] = CRGBW(r, g, b, w);
+  leds[92] = CRGBW(r, g, b, w);
 }
 void min48()
 {
-  ledsRGB[62] = CRGBW(r, g, b, w);
-  ledsRGB[63] = CRGBW(r, g, b, w);
-  ledsRGB[70] = CRGBW(r, g, b, w);
-  ledsRGB[71] = CRGBW(r, g, b, w);
-  ledsRGB[72] = CRGBW(r, g, b, w);
-  ledsRGB[73] = CRGBW(r, g, b, w);
-  ledsRGB[78] = CRGBW(r, g, b, w);
-  ledsRGB[79] = CRGBW(r, g, b, w);
-  ledsRGB[80] = CRGBW(r, g, b, w);
-  ledsRGB[81] = CRGBW(r, g, b, w);
-  ledsRGB[86] = CRGBW(r, g, b, w);
-  ledsRGB[87] = CRGBW(r, g, b, w);
-  ledsRGB[88] = CRGBW(r, g, b, w);
-  ledsRGB[90] = CRGBW(r, g, b, w);
-  ledsRGB[91] = CRGBW(r, g, b, w);
-  ledsRGB[92] = CRGBW(r, g, b, w);
+  leds[62] = CRGBW(r, g, b, w);
+  leds[63] = CRGBW(r, g, b, w);
+  leds[70] = CRGBW(r, g, b, w);
+  leds[71] = CRGBW(r, g, b, w);
+  leds[72] = CRGBW(r, g, b, w);
+  leds[73] = CRGBW(r, g, b, w);
+  leds[78] = CRGBW(r, g, b, w);
+  leds[79] = CRGBW(r, g, b, w);
+  leds[80] = CRGBW(r, g, b, w);
+  leds[81] = CRGBW(r, g, b, w);
+  leds[86] = CRGBW(r, g, b, w);
+  leds[87] = CRGBW(r, g, b, w);
+  leds[88] = CRGBW(r, g, b, w);
+  leds[90] = CRGBW(r, g, b, w);
+  leds[91] = CRGBW(r, g, b, w);
+  leds[92] = CRGBW(r, g, b, w);
 }
 void min49()
 {
-  ledsRGB[62] = CRGBW(r, g, b, w);
-  ledsRGB[63] = CRGBW(r, g, b, w);
-  ledsRGB[70] = CRGBW(r, g, b, w);
-  ledsRGB[71] = CRGBW(r, g, b, w);
-  ledsRGB[72] = CRGBW(r, g, b, w);
-  ledsRGB[73] = CRGBW(r, g, b, w);
-  ledsRGB[78] = CRGBW(r, g, b, w);
-  ledsRGB[79] = CRGBW(r, g, b, w);
-  ledsRGB[80] = CRGBW(r, g, b, w);
-  ledsRGB[81] = CRGBW(r, g, b, w);
-  ledsRGB[86] = CRGBW(r, g, b, w);
-  ledsRGB[88] = CRGBW(r, g, b, w);
-  ledsRGB[90] = CRGBW(r, g, b, w);
-  ledsRGB[91] = CRGBW(r, g, b, w);
-  ledsRGB[92] = CRGBW(r, g, b, w);
+  leds[62] = CRGBW(r, g, b, w);
+  leds[63] = CRGBW(r, g, b, w);
+  leds[70] = CRGBW(r, g, b, w);
+  leds[71] = CRGBW(r, g, b, w);
+  leds[72] = CRGBW(r, g, b, w);
+  leds[73] = CRGBW(r, g, b, w);
+  leds[78] = CRGBW(r, g, b, w);
+  leds[79] = CRGBW(r, g, b, w);
+  leds[80] = CRGBW(r, g, b, w);
+  leds[81] = CRGBW(r, g, b, w);
+  leds[86] = CRGBW(r, g, b, w);
+  leds[88] = CRGBW(r, g, b, w);
+  leds[90] = CRGBW(r, g, b, w);
+  leds[91] = CRGBW(r, g, b, w);
+  leds[92] = CRGBW(r, g, b, w);
 }
 void min50()
 {
-  ledsRGB[62] = CRGBW(r, g, b, w);
-  ledsRGB[63] = CRGBW(r, g, b, w);
-  ledsRGB[64] = CRGBW(r, g, b, w);
-  ledsRGB[65] = CRGBW(r, g, b, w);
-  ledsRGB[70] = CRGBW(r, g, b, w);
-  ledsRGB[72] = CRGBW(r, g, b, w);
-  ledsRGB[73] = CRGBW(r, g, b, w);
-  ledsRGB[80] = CRGBW(r, g, b, w);
-  ledsRGB[81] = CRGBW(r, g, b, w);
-  ledsRGB[86] = CRGBW(r, g, b, w);
-  ledsRGB[87] = CRGBW(r, g, b, w);
-  ledsRGB[88] = CRGBW(r, g, b, w);
-  ledsRGB[90] = CRGBW(r, g, b, w);
-  ledsRGB[91] = CRGBW(r, g, b, w);
-  ledsRGB[92] = CRGBW(r, g, b, w);
-  ledsRGB[93] = CRGBW(r, g, b, w);
+  leds[62] = CRGBW(r, g, b, w);
+  leds[63] = CRGBW(r, g, b, w);
+  leds[64] = CRGBW(r, g, b, w);
+  leds[65] = CRGBW(r, g, b, w);
+  leds[70] = CRGBW(r, g, b, w);
+  leds[72] = CRGBW(r, g, b, w);
+  leds[73] = CRGBW(r, g, b, w);
+  leds[80] = CRGBW(r, g, b, w);
+  leds[81] = CRGBW(r, g, b, w);
+  leds[86] = CRGBW(r, g, b, w);
+  leds[87] = CRGBW(r, g, b, w);
+  leds[88] = CRGBW(r, g, b, w);
+  leds[90] = CRGBW(r, g, b, w);
+  leds[91] = CRGBW(r, g, b, w);
+  leds[92] = CRGBW(r, g, b, w);
+  leds[93] = CRGBW(r, g, b, w);
 }
 void min51()
 {
-  ledsRGB[62] = CRGBW(r, g, b, w);
-  ledsRGB[64] = CRGBW(r, g, b, w);
-  ledsRGB[65] = CRGBW(r, g, b, w);
-  ledsRGB[70] = CRGBW(r, g, b, w);
-  ledsRGB[73] = CRGBW(r, g, b, w);
-  ledsRGB[78] = CRGBW(r, g, b, w);
-  ledsRGB[80] = CRGBW(r, g, b, w);
-  ledsRGB[81] = CRGBW(r, g, b, w);
-  ledsRGB[86] = CRGBW(r, g, b, w);
-  ledsRGB[88] = CRGBW(r, g, b, w);
-  ledsRGB[90] = CRGBW(r, g, b, w);
-  ledsRGB[92] = CRGBW(r, g, b, w);
-  ledsRGB[93] = CRGBW(r, g, b, w);
+  leds[62] = CRGBW(r, g, b, w);
+  leds[64] = CRGBW(r, g, b, w);
+  leds[65] = CRGBW(r, g, b, w);
+  leds[70] = CRGBW(r, g, b, w);
+  leds[73] = CRGBW(r, g, b, w);
+  leds[78] = CRGBW(r, g, b, w);
+  leds[80] = CRGBW(r, g, b, w);
+  leds[81] = CRGBW(r, g, b, w);
+  leds[86] = CRGBW(r, g, b, w);
+  leds[88] = CRGBW(r, g, b, w);
+  leds[90] = CRGBW(r, g, b, w);
+  leds[92] = CRGBW(r, g, b, w);
+  leds[93] = CRGBW(r, g, b, w);
 }
 void min52()
 {
-  ledsRGB[62] = CRGBW(r, g, b, w);
-  ledsRGB[63] = CRGBW(r, g, b, w);
-  ledsRGB[64] = CRGBW(r, g, b, w);
-  ledsRGB[65] = CRGBW(r, g, b, w);
-  ledsRGB[70] = CRGBW(r, g, b, w);
-  ledsRGB[73] = CRGBW(r, g, b, w);
-  ledsRGB[78] = CRGBW(r, g, b, w);
-  ledsRGB[79] = CRGBW(r, g, b, w);
-  ledsRGB[80] = CRGBW(r, g, b, w);
-  ledsRGB[81] = CRGBW(r, g, b, w);
-  ledsRGB[86] = CRGBW(r, g, b, w);
-  ledsRGB[87] = CRGBW(r, g, b, w);
-  ledsRGB[90] = CRGBW(r, g, b, w);
-  ledsRGB[91] = CRGBW(r, g, b, w);
-  ledsRGB[92] = CRGBW(r, g, b, w);
-  ledsRGB[93] = CRGBW(r, g, b, w);
+  leds[62] = CRGBW(r, g, b, w);
+  leds[63] = CRGBW(r, g, b, w);
+  leds[64] = CRGBW(r, g, b, w);
+  leds[65] = CRGBW(r, g, b, w);
+  leds[70] = CRGBW(r, g, b, w);
+  leds[73] = CRGBW(r, g, b, w);
+  leds[78] = CRGBW(r, g, b, w);
+  leds[79] = CRGBW(r, g, b, w);
+  leds[80] = CRGBW(r, g, b, w);
+  leds[81] = CRGBW(r, g, b, w);
+  leds[86] = CRGBW(r, g, b, w);
+  leds[87] = CRGBW(r, g, b, w);
+  leds[90] = CRGBW(r, g, b, w);
+  leds[91] = CRGBW(r, g, b, w);
+  leds[92] = CRGBW(r, g, b, w);
+  leds[93] = CRGBW(r, g, b, w);
 }
 void min53()
 {
-  ledsRGB[62] = CRGBW(r, g, b, w);
-  ledsRGB[63] = CRGBW(r, g, b, w);
-  ledsRGB[64] = CRGBW(r, g, b, w);
-  ledsRGB[65] = CRGBW(r, g, b, w);
-  ledsRGB[70] = CRGBW(r, g, b, w);
-  ledsRGB[73] = CRGBW(r, g, b, w);
-  ledsRGB[78] = CRGBW(r, g, b, w);
-  ledsRGB[79] = CRGBW(r, g, b, w);
-  ledsRGB[80] = CRGBW(r, g, b, w);
-  ledsRGB[81] = CRGBW(r, g, b, w);
-  ledsRGB[86] = CRGBW(r, g, b, w);
-  ledsRGB[88] = CRGBW(r, g, b, w);
-  ledsRGB[90] = CRGBW(r, g, b, w);
-  ledsRGB[91] = CRGBW(r, g, b, w);
-  ledsRGB[92] = CRGBW(r, g, b, w);
-  ledsRGB[93] = CRGBW(r, g, b, w);
+  leds[62] = CRGBW(r, g, b, w);
+  leds[63] = CRGBW(r, g, b, w);
+  leds[64] = CRGBW(r, g, b, w);
+  leds[65] = CRGBW(r, g, b, w);
+  leds[70] = CRGBW(r, g, b, w);
+  leds[73] = CRGBW(r, g, b, w);
+  leds[78] = CRGBW(r, g, b, w);
+  leds[79] = CRGBW(r, g, b, w);
+  leds[80] = CRGBW(r, g, b, w);
+  leds[81] = CRGBW(r, g, b, w);
+  leds[86] = CRGBW(r, g, b, w);
+  leds[88] = CRGBW(r, g, b, w);
+  leds[90] = CRGBW(r, g, b, w);
+  leds[91] = CRGBW(r, g, b, w);
+  leds[92] = CRGBW(r, g, b, w);
+  leds[93] = CRGBW(r, g, b, w);
 }
 void min54()
 {
-  ledsRGB[64] = CRGBW(r, g, b, w);
-  ledsRGB[65] = CRGBW(r, g, b, w);
-  ledsRGB[70] = CRGBW(r, g, b, w);
-  ledsRGB[72] = CRGBW(r, g, b, w);
-  ledsRGB[73] = CRGBW(r, g, b, w);
-  ledsRGB[78] = CRGBW(r, g, b, w);
-  ledsRGB[79] = CRGBW(r, g, b, w);
-  ledsRGB[80] = CRGBW(r, g, b, w);
-  ledsRGB[81] = CRGBW(r, g, b, w);
-  ledsRGB[86] = CRGBW(r, g, b, w);
-  ledsRGB[88] = CRGBW(r, g, b, w);
-  ledsRGB[90] = CRGBW(r, g, b, w);
-  ledsRGB[92] = CRGBW(r, g, b, w);
-  ledsRGB[93] = CRGBW(r, g, b, w);
+  leds[64] = CRGBW(r, g, b, w);
+  leds[65] = CRGBW(r, g, b, w);
+  leds[70] = CRGBW(r, g, b, w);
+  leds[72] = CRGBW(r, g, b, w);
+  leds[73] = CRGBW(r, g, b, w);
+  leds[78] = CRGBW(r, g, b, w);
+  leds[79] = CRGBW(r, g, b, w);
+  leds[80] = CRGBW(r, g, b, w);
+  leds[81] = CRGBW(r, g, b, w);
+  leds[86] = CRGBW(r, g, b, w);
+  leds[88] = CRGBW(r, g, b, w);
+  leds[90] = CRGBW(r, g, b, w);
+  leds[92] = CRGBW(r, g, b, w);
+  leds[93] = CRGBW(r, g, b, w);
 }
 void min55()
 {
-  ledsRGB[62] = CRGBW(r, g, b, w);
-  ledsRGB[63] = CRGBW(r, g, b, w);
-  ledsRGB[64] = CRGBW(r, g, b, w);
-  ledsRGB[65] = CRGBW(r, g, b, w);
-  ledsRGB[70] = CRGBW(r, g, b, w);
-  ledsRGB[72] = CRGBW(r, g, b, w);
-  ledsRGB[78] = CRGBW(r, g, b, w);
-  ledsRGB[79] = CRGBW(r, g, b, w);
-  ledsRGB[80] = CRGBW(r, g, b, w);
-  ledsRGB[81] = CRGBW(r, g, b, w);
-  ledsRGB[86] = CRGBW(r, g, b, w);
-  ledsRGB[88] = CRGBW(r, g, b, w);
-  ledsRGB[90] = CRGBW(r, g, b, w);
-  ledsRGB[91] = CRGBW(r, g, b, w);
-  ledsRGB[92] = CRGBW(r, g, b, w);
-  ledsRGB[93] = CRGBW(r, g, b, w);
+  leds[62] = CRGBW(r, g, b, w);
+  leds[63] = CRGBW(r, g, b, w);
+  leds[64] = CRGBW(r, g, b, w);
+  leds[65] = CRGBW(r, g, b, w);
+  leds[70] = CRGBW(r, g, b, w);
+  leds[72] = CRGBW(r, g, b, w);
+  leds[78] = CRGBW(r, g, b, w);
+  leds[79] = CRGBW(r, g, b, w);
+  leds[80] = CRGBW(r, g, b, w);
+  leds[81] = CRGBW(r, g, b, w);
+  leds[86] = CRGBW(r, g, b, w);
+  leds[88] = CRGBW(r, g, b, w);
+  leds[90] = CRGBW(r, g, b, w);
+  leds[91] = CRGBW(r, g, b, w);
+  leds[92] = CRGBW(r, g, b, w);
+  leds[93] = CRGBW(r, g, b, w);
 }
 void min56()
 {
-  ledsRGB[62] = CRGBW(r, g, b, w);
-  ledsRGB[63] = CRGBW(r, g, b, w);
-  ledsRGB[64] = CRGBW(r, g, b, w);
-  ledsRGB[65] = CRGBW(r, g, b, w);
-  ledsRGB[70] = CRGBW(r, g, b, w);
-  ledsRGB[72] = CRGBW(r, g, b, w);
-  ledsRGB[78] = CRGBW(r, g, b, w);
-  ledsRGB[79] = CRGBW(r, g, b, w);
-  ledsRGB[80] = CRGBW(r, g, b, w);
-  ledsRGB[81] = CRGBW(r, g, b, w);
-  ledsRGB[86] = CRGBW(r, g, b, w);
-  ledsRGB[87] = CRGBW(r, g, b, w);
-  ledsRGB[88] = CRGBW(r, g, b, w);
-  ledsRGB[90] = CRGBW(r, g, b, w);
-  ledsRGB[91] = CRGBW(r, g, b, w);
-  ledsRGB[92] = CRGBW(r, g, b, w);
-  ledsRGB[93] = CRGBW(r, g, b, w);
+  leds[62] = CRGBW(r, g, b, w);
+  leds[63] = CRGBW(r, g, b, w);
+  leds[64] = CRGBW(r, g, b, w);
+  leds[65] = CRGBW(r, g, b, w);
+  leds[70] = CRGBW(r, g, b, w);
+  leds[72] = CRGBW(r, g, b, w);
+  leds[78] = CRGBW(r, g, b, w);
+  leds[79] = CRGBW(r, g, b, w);
+  leds[80] = CRGBW(r, g, b, w);
+  leds[81] = CRGBW(r, g, b, w);
+  leds[86] = CRGBW(r, g, b, w);
+  leds[87] = CRGBW(r, g, b, w);
+  leds[88] = CRGBW(r, g, b, w);
+  leds[90] = CRGBW(r, g, b, w);
+  leds[91] = CRGBW(r, g, b, w);
+  leds[92] = CRGBW(r, g, b, w);
+  leds[93] = CRGBW(r, g, b, w);
 }
 void min57()
 {
-  ledsRGB[62] = CRGBW(r, g, b, w);
-  ledsRGB[63] = CRGBW(r, g, b, w);
-  ledsRGB[64] = CRGBW(r, g, b, w);
-  ledsRGB[65] = CRGBW(r, g, b, w);
-  ledsRGB[70] = CRGBW(r, g, b, w);
-  ledsRGB[72] = CRGBW(r, g, b, w);
-  ledsRGB[73] = CRGBW(r, g, b, w);
-  ledsRGB[78] = CRGBW(r, g, b, w);
-  ledsRGB[80] = CRGBW(r, g, b, w);
-  ledsRGB[81] = CRGBW(r, g, b, w);
-  ledsRGB[86] = CRGBW(r, g, b, w);
-  ledsRGB[88] = CRGBW(r, g, b, w);
-  ledsRGB[90] = CRGBW(r, g, b, w);
-  ledsRGB[92] = CRGBW(r, g, b, w);
-  ledsRGB[93] = CRGBW(r, g, b, w);
+  leds[62] = CRGBW(r, g, b, w);
+  leds[63] = CRGBW(r, g, b, w);
+  leds[64] = CRGBW(r, g, b, w);
+  leds[65] = CRGBW(r, g, b, w);
+  leds[70] = CRGBW(r, g, b, w);
+  leds[72] = CRGBW(r, g, b, w);
+  leds[73] = CRGBW(r, g, b, w);
+  leds[78] = CRGBW(r, g, b, w);
+  leds[80] = CRGBW(r, g, b, w);
+  leds[81] = CRGBW(r, g, b, w);
+  leds[86] = CRGBW(r, g, b, w);
+  leds[88] = CRGBW(r, g, b, w);
+  leds[90] = CRGBW(r, g, b, w);
+  leds[92] = CRGBW(r, g, b, w);
+  leds[93] = CRGBW(r, g, b, w);
 }
 void min58()
 {
-  ledsRGB[62] = CRGBW(r, g, b, w);
-  ledsRGB[63] = CRGBW(r, g, b, w);
-  ledsRGB[64] = CRGBW(r, g, b, w);
-  ledsRGB[65] = CRGBW(r, g, b, w);
-  ledsRGB[70] = CRGBW(r, g, b, w);
-  ledsRGB[72] = CRGBW(r, g, b, w);
-  ledsRGB[73] = CRGBW(r, g, b, w);
-  ledsRGB[78] = CRGBW(r, g, b, w);
-  ledsRGB[79] = CRGBW(r, g, b, w);
-  ledsRGB[80] = CRGBW(r, g, b, w);
-  ledsRGB[81] = CRGBW(r, g, b, w);
-  ledsRGB[86] = CRGBW(r, g, b, w);
-  ledsRGB[87] = CRGBW(r, g, b, w);
-  ledsRGB[88] = CRGBW(r, g, b, w);
-  ledsRGB[90] = CRGBW(r, g, b, w);
-  ledsRGB[91] = CRGBW(r, g, b, w);
-  ledsRGB[92] = CRGBW(r, g, b, w);
-  ledsRGB[93] = CRGBW(r, g, b, w);
+  leds[62] = CRGBW(r, g, b, w);
+  leds[63] = CRGBW(r, g, b, w);
+  leds[64] = CRGBW(r, g, b, w);
+  leds[65] = CRGBW(r, g, b, w);
+  leds[70] = CRGBW(r, g, b, w);
+  leds[72] = CRGBW(r, g, b, w);
+  leds[73] = CRGBW(r, g, b, w);
+  leds[78] = CRGBW(r, g, b, w);
+  leds[79] = CRGBW(r, g, b, w);
+  leds[80] = CRGBW(r, g, b, w);
+  leds[81] = CRGBW(r, g, b, w);
+  leds[86] = CRGBW(r, g, b, w);
+  leds[87] = CRGBW(r, g, b, w);
+  leds[88] = CRGBW(r, g, b, w);
+  leds[90] = CRGBW(r, g, b, w);
+  leds[91] = CRGBW(r, g, b, w);
+  leds[92] = CRGBW(r, g, b, w);
+  leds[93] = CRGBW(r, g, b, w);
 }
 void min59()
 {
-  ledsRGB[62] = CRGBW(r, g, b, w);
-  ledsRGB[63] = CRGBW(r, g, b, w);
-  ledsRGB[64] = CRGBW(r, g, b, w);
-  ledsRGB[65] = CRGBW(r, g, b, w);
-  ledsRGB[70] = CRGBW(r, g, b, w);
-  ledsRGB[72] = CRGBW(r, g, b, w);
-  ledsRGB[73] = CRGBW(r, g, b, w);
-  ledsRGB[78] = CRGBW(r, g, b, w);
-  ledsRGB[79] = CRGBW(r, g, b, w);
-  ledsRGB[80] = CRGBW(r, g, b, w);
-  ledsRGB[81] = CRGBW(r, g, b, w);
-  ledsRGB[86] = CRGBW(r, g, b, w);
-  ledsRGB[88] = CRGBW(r, g, b, w);
-  ledsRGB[90] = CRGBW(r, g, b, w);
-  ledsRGB[91] = CRGBW(r, g, b, w);
-  ledsRGB[92] = CRGBW(r, g, b, w);
-  ledsRGB[93] = CRGBW(r, g, b, w);
+  leds[62] = CRGBW(r, g, b, w);
+  leds[63] = CRGBW(r, g, b, w);
+  leds[64] = CRGBW(r, g, b, w);
+  leds[65] = CRGBW(r, g, b, w);
+  leds[70] = CRGBW(r, g, b, w);
+  leds[72] = CRGBW(r, g, b, w);
+  leds[73] = CRGBW(r, g, b, w);
+  leds[78] = CRGBW(r, g, b, w);
+  leds[79] = CRGBW(r, g, b, w);
+  leds[80] = CRGBW(r, g, b, w);
+  leds[81] = CRGBW(r, g, b, w);
+  leds[86] = CRGBW(r, g, b, w);
+  leds[88] = CRGBW(r, g, b, w);
+  leds[90] = CRGBW(r, g, b, w);
+  leds[91] = CRGBW(r, g, b, w);
+  leds[92] = CRGBW(r, g, b, w);
+  leds[93] = CRGBW(r, g, b, w);
 }
