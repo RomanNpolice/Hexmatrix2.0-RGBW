@@ -1,6 +1,7 @@
 #include <ESP8266WiFi.h>
 #include <WiFiManager.h>
 #include <time.h>
+#define FASTLED_ESP8266_NODEMCU_PIN_ORDER
 #include "FastLED.h"
 #include "FastLED_RGBW.h"
 
@@ -389,8 +390,6 @@ void loop()
     min59();
   }
   FastLED.show();
-  FastLED.clear();
-  FastLED.show();
 }
 
 void pride()
@@ -435,7 +434,6 @@ void pride()
 }
 /*------------------------------------Wifi Setup------------------------------------*/
 void wifiledset() {
-  FastLED.clear();
   leds[35] = CRGBW(w, w/2, w, 0);
   leds[21] = CRGBW(w, w/2, w, 0);
   leds[17] = CRGBW(w, w/2, w, 0);

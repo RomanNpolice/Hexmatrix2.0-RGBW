@@ -1,7 +1,10 @@
 #include <ESP8266WiFi.h>
 #include <WiFiManager.h>
 #include <time.h>
+#define FASTLED_ESP8266_NODEMCU_PIN_ORDER
 #include "FastLED.h"
+
+//#define DEBUG
 
 #if FASTLED_VERSION < 3001000
 #error "Requires FastLED 3.1 or later; check github for latest code."
@@ -33,16 +36,15 @@ WiFiClient wifiClient;
 
 void connectWifi()
 {
+  wifiledset();
   WiFi.mode(WIFI_STA);
   WiFiManager wm;
-  wifiledset();
   wm.autoConnect("RGB HexClock");
 }
 
 void setup() {
   Serial.begin(115200);
   delay(500);
-  connectWifi();
   Serial.println();
   Serial.println("\n\nNext Loop-Step: " + String(millis()) + ":");
   configTime(timezone, dst, "pool.ntp.org", "time.nist.gov");
@@ -50,6 +52,7 @@ void setup() {
   .setCorrection(TypicalLEDStrip)
   .setDither(BRIGHTNESS < 255);
   FastLED.setBrightness(BRIGHTNESS);
+  connectWifi();
 }
 
 
@@ -57,25 +60,29 @@ void loop()
 {
   time_t now = time(nullptr);
   struct tm* p_tm = localtime(&now);
-  //    Serial.print("-------------------------------------------------\n");
-  //    Serial.print("Date & Time : ");
-  //    Serial.print(p_tm->tm_mday);
-  //    Serial.print("/");
-  //    Serial.print(p_tm->tm_mon + 1);
-  //    Serial.print("/");
-  //    Serial.print(p_tm->tm_year + 1900);
-  //    Serial.print(" ");
+  #ifdef DEBUG
+     Serial.print("-------------------------------------------------\n");
+     Serial.print("Date & Time : ");
+     Serial.print(p_tm->tm_mday);
+     Serial.print("/");
+     Serial.print(p_tm->tm_mon + 1);
+     Serial.print("/");
+     Serial.print(p_tm->tm_year + 1900);
+     Serial.print(" ");
+  #endif
   int hour = p_tm->tm_hour;
   int minute = p_tm->tm_min;
   if (hour > 12)
   {
     hour = hour - 12;
   }
-  //    Serial.print(hour);
-  //    Serial.print(":");
-  //    Serial.print(minute);
-  //    Serial.print(":");
-  //    Serial.println(p_tm->tm_sec);
+  #ifdef DEBUG
+     Serial.print(hour);
+     Serial.print(":");
+     Serial.print(minute);
+     Serial.print(":");
+     Serial.println(p_tm->tm_sec);
+  #endif
   pride();
   if (hour == 0 || hour == 12)
   {
@@ -380,8 +387,6 @@ void loop()
     min59();
   }
   FastLED.show();
-  FastLED.clear();
-  FastLED.show();
 }
 
 void pride()
@@ -427,7 +432,32 @@ void pride()
 /*------------------------------------Wifi Setup------------------------------------*/
 void wifiledset(){
   FastLED.clear();
-  leds[87] = CRGB(r, g, b);
+  leds[35] = CRGB(r, g/2, b);
+  leds[21] = CRGB(r, g/2, b);
+  leds[17] = CRGB(r, g/2, b);
+  leds[16] = CRGB(r, g/2, b);
+  leds[8]  = CRGB(r, g/2, b);
+  leds[9]  = CRGB(r, g/2, b);
+  leds[15] = CRGB(r, g/2, b);
+  leds[14] = CRGB(r, g/2, b);
+  leds[28] = CRGB(r, g/2, b);
+  leds[26] = CRGB(r, g/2, b);
+  leds[45] = CRGB(r, g/2, b);
+  leds[41] = CRGB(r, g/2, b);
+  leds[31] = CRGB(r, g/2, b);
+  leds[32] = CRGB(r, g/2, b);
+  leds[38] = CRGB(r, g/2, b);
+  leds[50] = CRGB(r, g/2, b);
+  leds[62] = CRGB(r, g/2, b);
+  leds[56] = CRGB(r, g/2, b);
+  leds[55] = CRGB(r, g/2, b);
+  leds[65] = CRGB(r, g/2, b);
+  leds[71] = CRGB(r, g/2, b);
+  leds[72] = CRGB(r, g/2, b);
+  leds[80] = CRGB(r, g/2, b);
+  leds[79] = CRGB(r, g/2, b);
+  leds[86] = CRGB(r, g/2, b);
+  leds[87] = CRGB(r, g/2, b);
   FastLED.show();
 }
 

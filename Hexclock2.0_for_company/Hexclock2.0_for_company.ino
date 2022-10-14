@@ -1,7 +1,10 @@
 #include <ESP8266WiFi.h>
 #include <WiFiManager.h>
 #include <time.h>
+#define FASTLED_ESP8266_NODEMCU_PIN_ORDER
 #include "FastLED.h"
+
+//#define DEBUG
 
 #if FASTLED_VERSION < 3001000
 #error "Requires FastLED 3.1 or later; check github for latest code."
@@ -57,25 +60,29 @@ void loop()
 {
   time_t now = time(nullptr);
   struct tm* p_tm = localtime(&now);
-  //    Serial.print("-------------------------------------------------\n");
-  //    Serial.print("Date & Time : ");
-  //    Serial.print(p_tm->tm_mday);
-  //    Serial.print("/");
-  //    Serial.print(p_tm->tm_mon + 1);
-  //    Serial.print("/");
-  //    Serial.print(p_tm->tm_year + 1900);
-  //    Serial.print(" ");
+  #ifdef DEBUG
+    Serial.print("-------------------------------------------------\n");
+    Serial.print("Date & Time : ");
+    Serial.print(p_tm->tm_mday);
+     Serial.print("/");
+     Serial.print(p_tm->tm_mon + 1);
+     Serial.print("/");
+     Serial.print(p_tm->tm_year + 1900);
+     Serial.print(" ");
+  #endif
   int hour = p_tm->tm_hour;
   int minute = p_tm->tm_min;
   if (hour > 12)
   {
     hour = hour - 12;
   }
-  //    Serial.print(hour);
-  //    Serial.print(":");
-  //    Serial.print(minute);
-  //    Serial.print(":");
-  //    Serial.println(p_tm->tm_sec);
+  #ifdef DEBUG
+     Serial.print(hour);
+     Serial.print(":");
+     Serial.print(minute);
+     Serial.print(":");
+     Serial.println(p_tm->tm_sec);
+  #endif
   pride();
   if (hour == 0 || hour == 12)
   {
@@ -385,8 +392,6 @@ void loop()
   {
     min59();
   }
-  FastLED.show();
-  FastLED.clear();
   FastLED.show();
 }
 
