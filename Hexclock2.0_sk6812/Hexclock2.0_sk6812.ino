@@ -14,6 +14,10 @@
 #define COLOR_ORDER RGB
 #define NUM_LEDS    96  
 #define BRIGHTNESS  200
+<<<<<<< HEAD
+=======
+#define BACKGROUNDBRIGHTNESS 150
+>>>>>>> 9fe7ad2451c65c40841e9da166fbf8026c3ac7db
 #define DIMMINGBRIGHTNESS 80
 #define BRIGHTNESS_NIGHT  30
 #define MAXULONG 4294967295
@@ -418,13 +422,15 @@ void pride()
     uint16_t bri16 = (uint32_t)((uint32_t)b16 * (uint32_t)b16) / 65536;
     uint8_t bri8 = (uint32_t)(((uint32_t)bri16) * brightdepth) / 65536;
     bri8 += (255 - brightdepth);
+    bri8 = bri8 * BACKGROUNDBRIGHTNESS / 256;
 
-    CRGB newcolor = CHSV( hue8, sat8, bri8);
+    CRGB newcolor = CHSV(hue8, sat8, bri8);
 
     uint16_t pixelnumber = i;
     pixelnumber = (NUM_LEDS - 1) - pixelnumber;
 
     nblend((CRGB&)leds[pixelnumber], newcolor, 64);
+    leds[pixelnumber] = CRGBW(leds[pixelnumber].red, leds[pixelnumber].green, leds[pixelnumber].blue, 0);
   }
 }
 /*------------------------------------Wifi Setup------------------------------------*/
