@@ -23,13 +23,13 @@ More information, Link in [original link](https://www.instructables.com/RGB-HexM
 # The Reason why I developed it RGBW version
 Existing version is disadvantage to short life cycle from weekness of heat. So, SK6812, compatable with WS2812, is more fit to LED clock reason why more strong from the heat and easy to solder. Additionally, When turn on white color, RGB LED truns three diodes 'R', 'G', 'B' but RGBW LED turns only one diodes 'W' So it more efficient of power consumption and long lasting for led lives. I also made RGBNW version for beauty.
 
-+ 2022.09.03 add
++ 2022.09.03 add  
 The led dimmed in 10 o' clock, and lowest light at 11pm for Night time and save LEDs to overheat.
 add company version to dimming led at lunch time(12:00~1:30) for employee to sleep.
 
-+ 2022.10.14 add
++ 2022.10.14 add  
 Add define code for newest fastled library, When connect wifi, Set led to wifi shaped(debugging...).
 Code modify for fix glitches.
 
-+ 2022.10.24 add
++ 2022.10.24 add  
 Set brightness from 255 to 200.

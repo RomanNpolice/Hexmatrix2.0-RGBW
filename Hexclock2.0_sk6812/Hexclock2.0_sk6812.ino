@@ -10,14 +10,11 @@
 #endif
 
 #define DATA_PIN    2
-#define LED_TYPE    SK6812
+#define LED_TYPE    WS2812B
 #define COLOR_ORDER RGB
 #define NUM_LEDS    96  
 #define BRIGHTNESS  200
-<<<<<<< HEAD
-=======
 #define BACKGROUNDBRIGHTNESS 150
->>>>>>> 9fe7ad2451c65c40841e9da166fbf8026c3ac7db
 #define DIMMINGBRIGHTNESS 80
 #define BRIGHTNESS_NIGHT  30
 #define MAXULONG 4294967295
