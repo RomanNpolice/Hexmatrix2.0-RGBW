@@ -12,9 +12,7 @@
 
 #define DATA_PIN 2
 #define LED_TYPE WS2812B
-#define COLOR_ORDER RGB
-#define NUM_LEDS    96
-#define BRIGHTNESS  200
+#define COLOR_ORDER GRB
 #define NUM_LEDS 96
 #define BRIGHTNESS 200
 #define BACKGROUNDBRIGHTNESS 100
@@ -24,10 +22,11 @@
 
 CRGB leds[NUM_LEDS];
 
+
 //Digits color values in RGB
 int r = 255;
-int g = 220;
-int b = 180;
+int g = 249;
+int b = 78;
 
 const char* ESP_HOST_NAME = "esp-" + ESP.getFlashChipId();
 
